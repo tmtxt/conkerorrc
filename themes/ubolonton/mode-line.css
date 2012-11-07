@@ -1,0 +1,10 @@
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+.mode-line {
+  padding: 2px;
+  /* -moz-appearance: -moz-mac-unified-toolbar; */
+  font-family: Menlo;
+  font-size: 12px;
+  
+}
