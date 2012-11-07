@@ -26,7 +26,7 @@ require("daemon.js");
 require("session.js");
 require("dom-inspector.js");
 
-// load_paths.unshift("file:///Users/ubolonton/.conkerorrc/modules/");
+// load_paths.unshift("file://~/.conkerorrc/modules/");
 require("favicon.js"); // they forgot this in new-tabs.js
 require("new-tabs.js");
 tab_bar_show_icon = true;
@@ -35,18 +35,15 @@ tab_bar_show_index = true;
 define_key(default_global_keymap, "A-i", "inspect-chrome");
 define_key(read_buffer_keymap, "A-i", "inspect-chrome");
 
-// Textmate as external editor
-editor_shell_command = "mate -w";
-
 // Personal theme
 theme_load_paths.unshift("~/.conkerorrc/themes/");
 theme_unload("default");
-theme_load("ubolonton");
-interactive("ubolonton-theme", "Load my personal theme",
+theme_load("tommytxtruong");
+interactive("tommytxtruong-theme", "Load my personal theme",
             function(I) {
-                theme_load("ubolonton");
+                theme_load("tommytxtruong");
             });
-define_key(default_global_keymap, "A-u", "ubolonton-theme");
+define_key(default_global_keymap, "A-u", "tommytxtruong-theme");
 
 // gmail-mode
 require("page-modes/gmail.js");
@@ -103,6 +100,7 @@ define_key(default_global_keymap, "0",
               switch_to_buffer(I.window,
                                I.window.buffers.get_buffer(I.window.buffers.count - 1));
           });
+
 //// Stop loading all buffer (key A-h)
 define_key(default_global_keymap, "A-h",
           function (I)
@@ -112,6 +110,7 @@ define_key(default_global_keymap, "A-h",
                   stop_loading(I.window.buffers.get_buffer(i));
               }
           });
+
 //// reload all buffer (key A-r)
 define_key(default_global_keymap, "A-r",
           function (I)
@@ -121,6 +120,7 @@ define_key(default_global_keymap, "A-r",
                   reload(I.window.buffers.get_buffer(i));
               }
           });
+
 ////Switch to last buffer
 define_key(default_global_keymap, "C-S-tab",
           function (I)
@@ -128,6 +128,7 @@ define_key(default_global_keymap, "C-S-tab",
               switch_to_buffer(I.window,
                                I.window.buffers.buffer_list[1])
           });
+
 //// Key Aliases
 require("global-overlay-keymap");
 define_key_alias("C-m", "return");
@@ -138,7 +139,7 @@ define_key_alias("C-A-x", "0");
 define_key_alias("C-M-s", "0");
 define_key_alias("C-A-left", "1");
 
-// caret-mode by default
+// caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
 
 // Some webjumps
@@ -148,9 +149,7 @@ define_webjump("bookmark",
                                               $use_bookmarks = true,
                                               $match_required = true),
                $description = "Visit a conkeror bookmark");
-define_webjump("duckduckgo", "http://duckduckgo.com/?q=%s");
 //Google search for specific site
-define_webjump("tcb", "http://www.google.com/search?q=%s%20site:thecentralbox.com"); //Google search for thecentralbox.com
 define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com"); //Google search for hdvietnam.com
 define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com"); //Google search for yeuamnhac.com
 //Custom web jumps
@@ -185,14 +184,6 @@ download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
 // Load clicked link in background
 require("clicks-in-new-buffer.js");
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
-
-// MozRepl (4242)
-user_pref('extensions.mozrepl.autoStart', true);
-user_pref('extensions.mozrepl.loopbackOnly', false);
-let (mozrepl_init = get_home_directory()) {
-    mozrepl_init.appendRelativePath(".conkerorrc/mozrepl/init.js");
-    session_pref('extensions.mozrepl.initUrl', make_uri(mozrepl_init).spec);
-}
 
 // Replacement of built-in C-x b
 minibuffer.prototype.read_recent_buffer = function () {
@@ -289,9 +280,6 @@ interactive("readability_arc90",
             });
 define_key(content_buffer_normal_keymap, "j", "readability_arc90");
 
-//undefine_key(default_global_keymap,"j");
-//define_key(content_buffer_normal_keymap, "j", "copy");
-
 // What's this?
 function repl_context() {
     let ctx = {};
@@ -303,9 +291,8 @@ function repl_context() {
     return ctx;
 }
 
-// The rest is experimental ----------------------------------------------------
 
-// Darken page
+// Darken page - for reading webpage in the night
 // TODO: use a boolean to keep track of dark/light state
 // TODO: add hook for new buffers
 function foo (I) {
@@ -409,7 +396,6 @@ Components.classes["@mozilla.org/login-manager;1"]
 cwd=get_home_directory(); 
 cwd.append("Downloads"); 
 
-
 //Facebook share
 function facebook_share(I){
     var d=I.buffer.document;
@@ -420,12 +406,11 @@ function facebook_share(I){
                           OPEN_NEW_BUFFER,
                           f+p);
 };
-
 interactive("facebook-share", "Share the current site on Facebook.", facebook_share);
+define_key(default_global_keymap, "M-f", "facebook-share"); //also bind M-f to facebook share function
 
 //Use bookmark on url completion
 url_completion_use_bookmarks = true;
 
 //google search mode
 require("page-modes/google-search-results.js");
-
