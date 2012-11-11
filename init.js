@@ -54,32 +54,6 @@ user_pref("signon.prefillForms", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
 
-// Custom key-bindings
-//// buffer next & previous for 1 & 2 hands user
-define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
-define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
-define_key(default_global_keymap, "A-left", "buffer-previous");
-define_key(default_global_keymap, "A-right", "buffer-next");
-//// follow new buffer background
-define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
-define_key(content_buffer_normal_keymap, "a", "follow-new-buffer-background");
-//// kill current buffer
-define_key(default_global_keymap, "w", "kill-current-buffer");
-define_key(default_global_keymap, "A-w", "kill-current-buffer");
-//// word selection
-define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
-define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
-define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
-define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
-//// other key bindings
-define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
-define_key(default_global_keymap, "A-q" , "quit");
-define_key(default_global_keymap, "A-n", "find-url-new-window");
-define_key(default_global_keymap, "A-a", "find-url-new-window");
-define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
-define_key(default_global_keymap, "A-t", "find-url-new-buffer");
-define_key(default_global_keymap, "A-s", "save-page-complete");
-
 //// Use numeric key to switch buffers (1-9)
 function define_switch_buffer_key (key, buf_num) {
     define_key(default_global_keymap, key,
@@ -93,9 +67,15 @@ for (let i = 0; i < 9; ++i) {
 }
 //// Use  to swtich to first buffer
 define_switch_buffer_key("C-A-z", 0);
-define_switch_buffer_key("C-M-a", 0);
+
 //// Switch to last buffer (key 0 or )
 define_key(default_global_keymap, "0",
+          function (I)
+          {
+              switch_to_buffer(I.window,
+                               I.window.buffers.get_buffer(I.window.buffers.count - 1));
+          });
+define_key(default_global_keymap, "C-A-x",
           function (I)
           {
               switch_to_buffer(I.window,
@@ -140,14 +120,39 @@ interactive("switch-to-last-buffer", "Switch to the last visited buffer",
             });
 define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 
+// Custom key-bindings
+//// buffer change
+// next and previous buffer
+define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
+define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
+define_key(default_global_keymap, "A-left", "buffer-previous");
+define_key(default_global_keymap, "A-right", "buffer-next");
+//// follow new buffer background
+define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
+define_key(content_buffer_normal_keymap, "a", "follow-new-buffer-background");
+//// kill current buffer
+define_key(default_global_keymap, "w", "kill-current-buffer");
+define_key(default_global_keymap, "A-w", "kill-current-buffer");
+//// word selection
+define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
+define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
+define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
+define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
+//// other key bindings
+define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
+define_key(default_global_keymap, "A-q" , "quit");
+define_key(default_global_keymap, "A-n", "find-url-new-window");
+define_key(default_global_keymap, "A-a", "find-url-new-window");
+define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
+define_key(default_global_keymap, "A-t", "find-url-new-buffer");
+define_key(default_global_keymap, "A-s", "save-page-complete");
+
 //// Key Aliases
 require("global-overlay-keymap");
 define_key_alias("C-m", "return");
 define_key_alias("A-c", "M-w");
 define_key_alias("A-v", "C-y");
 define_key_alias("C-A-right", "0");
-define_key_alias("C-A-x", "0");
-define_key_alias("C-M-s", "0");
 define_key_alias("C-A-left", "1");
 
 // caret-mode disable by default
