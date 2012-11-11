@@ -62,6 +62,7 @@ define_key(default_global_keymap, "A-left", "buffer-previous");
 define_key(default_global_keymap, "A-right", "buffer-next");
 //// follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
+define_key(content_buffer_normal_keymap, "a", "follow-new-buffer-background");
 //// kill current buffer
 define_key(default_global_keymap, "w", "kill-current-buffer");
 define_key(default_global_keymap, "A-w", "kill-current-buffer");
@@ -149,9 +150,11 @@ define_webjump("bookmark",
                                               $use_bookmarks = true,
                                               $match_required = true),
                $description = "Visit a conkeror bookmark");
+
 //Google search for specific site
 define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com"); //Google search for hdvietnam.com
 define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com"); //Google search for yeuamnhac.com
+
 //Custom web jumps
 define_webjump("dantri", "http://dantri.com.vn");
 define_webjump("vnexpress", "http://vnexpress.net");
@@ -171,6 +174,14 @@ define_webjump("facebook", "http://www.facebook.com");
 define_webjump("f", "http://www.facebook.com");
 define_webjump("lqd-dd", "http://lqd-dd.com/");
 define_webjump("googlevn", "http://google.com.vn/");
+
+//keyboard shorcut for often-used sites
+interactive("open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
+            $browser_object = "http://facebook.com/");
+define_key(content_buffer_normal_keymap, "C-1", "open-facebook-new");
+interactive("open-lqddd-new", "Open Lqd-dd New Buffer", "follow-new-buffer",
+            $browser_object = "http://lqd-dd.com/");
+define_key(content_buffer_normal_keymap, "C-2", "open-lqddd-new");
 
 // Use history not bookmark?
 url_completion_use_history = true;
@@ -409,8 +420,16 @@ function facebook_share(I){
 interactive("facebook-share", "Share the current site on Facebook.", facebook_share);
 define_key(default_global_keymap, "M-f", "facebook-share"); //also bind M-f to facebook share function
 
-//Use bookmark on url completion
+//Use bookmark and history on url completion
 url_completion_use_bookmarks = true;
+url_completion_use_history = true;
 
 //google search mode
 require("page-modes/google-search-results.js");
+
+//viewmarks extension, to manage bookmarks
+interactive("viewmarks",
+    "Open ViewMarks window.",
+    function (I) {
+        make_chrome_window('chrome://viewmarks/content/viewmark.xul');
+    });
