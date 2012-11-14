@@ -168,7 +168,9 @@ define_webjump("bookmark",
 
 //Google search for specific site
 define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com"); //Google search for hdvietnam.com
-define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com"); //Google search for yeuamnhac.com
+define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com");
+////Google search for yeuamnhac.com
+define_webjump("g", "http://www.google.com/search?q=%s"); //shortcut for google search
 
 //Custom web jumps
 define_webjump("dantri", "http://dantri.com.vn");
