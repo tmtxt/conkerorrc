@@ -219,28 +219,61 @@ require("clicks-in-new-buffer.js");
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 // Replacement of built-in C-x b
+// minibuffer.prototype.read_recent_buffer = function () {
+//     var window = this.window;
+//     var buffer = this.window.buffers.current;
+//     keywords(arguments, $prompt = "Buffer:",
+//              $default = buffer,
+//              $history = "buffer");
+//     var buffers = window.buffers.buffer_list.slice(0);
+//     buffers.push(buffers.shift());
+//     var completer = all_word_completer(
+//         $completions = buffers,
+//         $get_string = function (x) x.title,
+//         $get_description = function (x) x.description);
+//     var result = yield this.read(
+//         $keymap = read_buffer_keymap,
+//         $prompt = arguments.$prompt,
+//         $history = arguments.$history,
+//         $completer = completer,
+//         $match_required = true,
+//         $auto_complete = "buffer",
+//         $auto_complete_initial = true,
+//         $auto_complete_delay = 0,
+//         $default_completion = arguments.$default);
+//     yield co_return(result);
+// };
+
+// Replacement of built-in buffer switcher
 minibuffer.prototype.read_recent_buffer = function () {
     var window = this.window;
     var buffer = this.window.buffers.current;
     keywords(arguments, $prompt = "Buffer:",
              $default = buffer,
              $history = "buffer");
-    var buffers = window.buffers.buffer_list.slice(0);
+    var buffers = window.buffers.buffer_history.slice(0);
     buffers.push(buffers.shift());
     var completer = all_word_completer(
         $completions = buffers,
-        $get_string = function (x) x.title,
-        $get_description = function (x) x.description);
+        $get_string = function (x) {
+            return ' ' + x.title;
+        },
+        $get_description = function (x) x.description,
+        $get_icon = (read_buffer_show_icons ?
+                     function (x) x.icon : null)
+    );
     var result = yield this.read(
         $keymap = read_buffer_keymap,
         $prompt = arguments.$prompt,
         $history = arguments.$history,
         $completer = completer,
+        $enable_icons = read_buffer_show_icons,
         $match_required = true,
         $auto_complete = "buffer",
         $auto_complete_initial = true,
         $auto_complete_delay = 0,
-        $default_completion = arguments.$default);
+        $default_completion = arguments.$default
+    );
     yield co_return(result);
 };
 
