@@ -141,15 +141,17 @@ define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
 //// other key bindings
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
 define_key(default_global_keymap, "A-q" , "quit");
-define_key(default_global_keymap, "A-n", "find-url-new-window");
-define_key(default_global_keymap, "A-a", "find-url-new-window");
+//define_key(default_global_keymap, "A-n", "find-url-new-window");
+//define_key(default_global_keymap, "A-a", "find-url-new-window");
 define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
 define_key(default_global_keymap, "A-t", "find-url-new-buffer");
-define_key(default_global_keymap, "A-s", "save-page-complete");
+undefine_key(content_buffer_normal_keymap, "t");
+define_key(default_global_keymap, "t", "find-url-new-buffer");
 
 //// Key Aliases
 require("global-overlay-keymap");
 define_key_alias("C-m", "return");
+define_key_alias("C-a", "return");
 define_key_alias("A-c", "M-w");
 define_key_alias("A-v", "C-y");
 define_key_alias("C-A-right", "0");
@@ -170,7 +172,10 @@ define_webjump("bookmark",
 define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com"); //Google search for hdvietnam.com
 define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com");
 ////Google search for yeuamnhac.com
-define_webjump("g", "http://www.google.com/search?q=%s"); //shortcut for google search
+define_webjump("g", "http://www.google.com/search?q=%s"); //shortcut for google
+//search
+define_webjump("yt", "http://www.youtube.com/results?search_query=%s");
+////shortcut for youtube search
 
 //Custom web jumps
 define_webjump("dantri", "http://dantri.com.vn");
@@ -450,3 +455,29 @@ interactive("viewmarks",
     function (I) {
         make_chrome_window('chrome://viewmarks/content/viewmark.xul');
     });
+
+//colors-toggle
+//replace darken-page mode
+interactive("colors-toggle", "toggle between document and forced colors",
+            function (I) {
+                var p = "browser.display.use_document_colors";
+                if (get_pref(p)) {
+                    session_pref("browser.active_color", "yellow");
+                    session_pref("browser.anchor_color", "#4986dd");
+                    session_pref("browser.display.background_color", "#0C141E");
+                    session_pref("browser.display.foreground_color", "#A0AFA8");
+                    session_pref("browser.display.focus_background_color", "green"); // ?
+                    session_pref("browser.display.focus_text_color", "red"); // ?
+                    session_pref("browser.visited_color", "#805DBB");
+                    session_pref(p, false);
+                } else {
+                    session_pref("browser.active_color", "#EE0000");
+                    session_pref("browser.anchor_color", "#0000EE");
+                    session_pref("browser.display.background_color", "#FFFFFF");
+                    session_pref("browser.display.foreground_color", "#000000");
+                    session_pref("browser.display.focus_background_color", "#117722");
+                    session_pref("browser.display.focus_text_color", "#FFFFFF");
+                    session_pref("browser.visited_color", "#551A8B");
+                    session_pref(p, true);
+                }
+            });
