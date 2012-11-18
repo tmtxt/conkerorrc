@@ -11,7 +11,6 @@ let (mozrepl_init = get_home_directory()) {
     session_pref('extensions.mozrepl.initUrl', make_uri(mozrepl_init).spec);
 }
 
-
 // OSX mapping: Command => A | Option => M
 modifiers.M = new modifier(function (event) { return event.altKey; },
                            function (event) { event.altKey = true; });
@@ -31,6 +30,30 @@ require("favicon.js"); // they forgot this in new-tabs.js
 require("new-tabs.js");
 tab_bar_show_icon = true;
 tab_bar_show_index = true;
+
+// Auto load the auto-save session when conkeror starts
+session_auto_save_auto_load = true;
+
+//this is fro replacing the built in kill-this-buffer command
+//the command tmtxt-close-and-save-current-buffer will save the URL of the
+//current buffer beforing closing it
+//later when you want to reopen it, just call the command tmtxt-open-closed-buffer
+//first, create an array to hold the closed buffers
+var tmtxt_closed_buffers = new Array();
+//save the URL of the current buffer before closing it
+interactive("tmtxt-close-and-save-current-buffer", "close and save the current buffer for later restore",
+			function(I) {
+			  tmtxt_closed_buffers.push(I.buffer.document.URL);
+			  kill_buffer(I.buffer);
+			});
+//reopen the last closed buffer and remove it from the array
+interactive("tmtxt-open-closed-buffer", "open the last closed buffer", 
+			function(I){
+			  if(tmtxt_closed_buffers.length>0){
+				load_url_in_new_buffer(tmtxt_closed_buffers[tmtxt_closed_buffers.length-1],I.window);
+				tmtxt_closed_buffers.pop();
+			  }
+			});
 
 define_key(default_global_keymap, "A-i", "inspect-chrome");
 define_key(read_buffer_keymap, "A-i", "inspect-chrome");
@@ -131,8 +154,10 @@ define_key(default_global_keymap, "A-right", "buffer-next");
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
 define_key(content_buffer_normal_keymap, "a", "follow-new-buffer-background");
 //// kill current buffer
-define_key(default_global_keymap, "w", "kill-current-buffer");
-define_key(default_global_keymap, "A-w", "kill-current-buffer");
+define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
+define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
+//reopen last closed buffer
+define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer")
 //// word selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
 define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
@@ -447,9 +472,6 @@ function set_darkness (buffer) {
 
 add_hook("buffer_dom_content_loaded_hook", set_darkness, false, true);
 add_hook("buffer_loaded_hook", set_darkness, false, true);
-
-// Auto load the auto-save session when conkeror starts
-session_auto_save_auto_load = true;
 
 // Allow installing extension from any source
 session_pref("xpinstall.whitelist.required", false);
