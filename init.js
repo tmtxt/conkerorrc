@@ -43,6 +43,10 @@ var tmtxt_closed_buffers = new Array();
 //save the URL of the current buffer before closing it
 interactive("tmtxt-close-and-save-current-buffer", "close and save the current buffer for later restore",
 			function(I) {
+			  if(tmtxt_closed_buffers.length==10){
+				tmtxt_closed_buffers.shift(); // remove older item to save
+				// memory, just save maximum 10 buffers
+			  }
 			  tmtxt_closed_buffers.push(I.buffer.document.URL);
 			  kill_buffer(I.buffer);
 			});
@@ -147,12 +151,15 @@ define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 //// buffer change
 // next and previous buffer
 define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
+define_key(default_global_keymap, "C-;", "buffer-previous"); //two hands user
 define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
-define_key(default_global_keymap, "A-left", "buffer-previous");
-define_key(default_global_keymap, "A-right", "buffer-next");
+define_key(default_global_keymap, "C-'", "buffer-next"); //two hands user
+define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
+define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
 //// follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
-define_key(content_buffer_normal_keymap, "a", "follow-new-buffer-background");
+undefine_key(default_global_keymap, "q");
+define_key(content_buffer_normal_keymap, "q", "follow-new-buffer-background");
 //// kill current buffer
 define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
 define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
@@ -179,8 +186,8 @@ define_key_alias("C-m", "return");
 define_key_alias("C-a", "return");
 define_key_alias("A-c", "M-w");
 define_key_alias("A-v", "C-y");
-define_key_alias("C-A-right", "0");
-define_key_alias("C-A-left", "1");
+define_key_alias("C-:", "C-A-z");
+define_key_alias("C-\"", "C-A-x");
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
@@ -193,16 +200,19 @@ define_webjump("bookmark",
                                               $match_required = true),
                $description = "Visit a conkeror bookmark");
 
-//Google search for specific site
-define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com"); //Google search for hdvietnam.com
-define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com");
-////Google search for yeuamnhac.com
-define_webjump("g", "http://www.google.com/search?q=%s"); //shortcut for google
-//search
-define_webjump("yt", "http://www.youtube.com/results?search_query=%s");
-////shortcut for youtube search
+//special web jump (searching)
+define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com",
+			  $description = "Google search for hdvietname.com");
+define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com",
+			  $description = "Google Search for yeuamnhac.com");
+define_webjump("g", "http://www.google.com/search?q=%s", 
+			  $description = "Google Search");
+define_webjump("yt", "http://www.youtube.com/results?search_query=%s",
+			  $description = "Youtue Search");
+define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s",
+			  $description = "Javascript documentation search (Mozilla)");
 
-//Custom web jumps
+//normal web jumps
 define_webjump("dantri", "http://dantri.com.vn");
 define_webjump("vnexpress", "http://vnexpress.net");
 define_webjump("ti", "http://tinhte.vn");
