@@ -188,6 +188,7 @@ define_key_alias("A-c", "M-w");
 define_key_alias("A-v", "C-y");
 define_key_alias("C-:", "C-A-z");
 define_key_alias("C-\"", "C-A-x");
+define_key_alias("C-o", "escape");
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
