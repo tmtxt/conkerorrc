@@ -34,7 +34,7 @@ tab_bar_show_index = true;
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
 
-//this is fro replacing the built in kill-this-buffer command
+//this is for replacing the built in kill-this-buffer command
 //the command tmtxt-close-and-save-current-buffer will save the URL of the
 //current buffer beforing closing it
 //later when you want to reopen it, just call the command tmtxt-open-closed-buffer
@@ -151,9 +151,9 @@ define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 //// buffer change
 // next and previous buffer
 define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
-define_key(default_global_keymap, "C-;", "buffer-previous"); //two hands user
+define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
 define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
-define_key(default_global_keymap, "C-'", "buffer-next"); //two hands user
+define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
 define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
 //// follow new buffer background
@@ -186,8 +186,8 @@ define_key_alias("C-m", "return");
 define_key_alias("C-a", "return");
 define_key_alias("A-c", "M-w");
 define_key_alias("A-v", "C-y");
-define_key_alias("C-:", "C-A-z");
-define_key_alias("C-\"", "C-A-x");
+define_key_alias("C-J", "C-A-z");
+define_key_alias("C-L", "C-A-x");
 define_key_alias("C-o", "escape");
 
 // caret-mode disable by default
@@ -203,7 +203,7 @@ define_webjump("bookmark",
 
 //special web jump (searching)
 define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com",
-			  $description = "Google search for hdvietname.com");
+			  $description = "Google search for hdvietnam.com");
 define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com",
 			  $description = "Google Search for yeuamnhac.com");
 define_webjump("g", "http://www.google.com/search?q=%s", 
@@ -212,6 +212,8 @@ define_webjump("yt", "http://www.youtube.com/results?search_query=%s",
 			  $description = "Youtue Search");
 define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s",
 			  $description = "Javascript documentation search (Mozilla)");
+define_webjump("tt", "http://www.google.com/search?q=%s%20site:tinhte.vn",
+			  $description = "Google search for tinhte.vn");
 
 //normal web jumps
 define_webjump("dantri", "http://dantri.com.vn");
@@ -229,12 +231,15 @@ define_webjump("lqd-dd", "http://lqd-dd.com/");
 define_webjump("googlevn", "http://google.com.vn/");
 
 //keyboard shorcut for often-used sites
-interactive("open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
+interactive("tmtxt-open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
             $browser_object = "http://facebook.com/");
-define_key(content_buffer_normal_keymap, "C-1", "open-facebook-new");
-interactive("open-tinhte-new", "Open Tinhte New Buffer", "follow-new-buffer",
+define_key(content_buffer_normal_keymap, "C-1", "tmtxt-open-facebook-new");
+interactive("tmtxt-open-tinhte-new", "Open Tinhte New Buffer", "follow-new-buffer",
             $browser_object = "http://tinhte.vn/");
-define_key(content_buffer_normal_keymap, "C-2", "open-tinhte-new");
+define_key(content_buffer_normal_keymap, "C-2", "tmtxt-open-tinhte-new");
+interactive("tmtxt-open-hn-new", "Open HN New Buffer", "follow-new-buffer",
+            $browser_object = "http://news.ycombinator.com/");
+define_key(content_buffer_normal_keymap, "C-3", "tmtxt-open-hn-new");
 
 // Use history not bookmark?
 url_completion_use_history = true;
