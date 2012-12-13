@@ -31,6 +31,8 @@ require("mode-line.js");
 // show how many buffers are in the current window and which one is currently
 // selected
 add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+// show how many buffers are currently loading
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
 
 // load_paths.unshift("file://~/.conkerorrc/modules/");
 require("favicon.js"); // they forgot this in new-tabs.js
