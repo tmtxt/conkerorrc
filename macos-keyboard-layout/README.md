@@ -1,0 +1,1 @@
+Keyboard layouts for Mac OS. Fix the dead key on Meta. Just put this into ~/Library/Keyboard Layouts/
