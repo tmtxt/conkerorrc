@@ -1,0 +1,1 @@
+My conkeror config files. Clone this repo and rename it to .conkerorrc and put it into home directory.
