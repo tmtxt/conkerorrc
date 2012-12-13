@@ -75,8 +75,12 @@ define_key(default_global_keymap, "A-u", "tommytxtruong-theme");
 // gmail-mode
 require("page-modes/gmail.js");
 define_key(gmail_keymap, "v", null, $fallthrough);
+define_key(gmail_keymap, "space", null, $fallthrough);
+define_key(gmail_keymap, "S-space", null, $fallthrough);
+define_key(gmail_keymap, "page_up", null, $fallthrough);
+define_key(gmail_keymap, "page_down", null, $fallthrough);
 
-// Does not seem to work :-(
+// form
 user_pref("signon.prefillForms", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
@@ -169,6 +173,7 @@ define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer")
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
 define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
 define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
+define_key(content_buffer_normal_keymap, "C-E", "cmd_selectEndLine");
 define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
 //// other key bindings
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
