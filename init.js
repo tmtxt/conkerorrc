@@ -228,6 +228,10 @@ define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s",
 			  $description = "Javascript documentation search (Mozilla)");
 define_webjump("tt", "http://www.google.com/search?q=%s%20site:tinhte.vn",
 			  $description = "Google search for tinhte.vn");
+define_webjump("tpb", "http://thepiratebay.se/search/%s",
+               $description = "Pirate Bay torrent search");
+define_webjump("php", "http://www.php.net/manual-lookup.php?pattern=%s&scope=quickref",
+               $description = "PHP Doc Search");
 
 //normal web jumps
 define_webjump("dantri", "http://dantri.com.vn");
