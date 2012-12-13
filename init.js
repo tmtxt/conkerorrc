@@ -20,10 +20,17 @@ modifiers.A = new modifier(function (event) { return event.metaKey; },
 define_key(default_global_keymap, "A-`", null, $fallthrough);
 
 // Some useful modules
-require("mode-line.js");
 require("daemon.js");
 require("session.js");
 require("dom-inspector.js");
+
+// mode line
+// the bar in Conkeror's gui between the browser and the minibuffer.
+require("mode-line.js");
+// some widgets for this mode
+// show how many buffers are in the current window and which one is currently
+// selected
+add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
 
 // load_paths.unshift("file://~/.conkerorrc/modules/");
 require("favicon.js"); // they forgot this in new-tabs.js
