@@ -185,23 +185,24 @@ define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
 define_key(content_buffer_normal_keymap, "C-E", "cmd_selectEndLine");
 define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
 //// other key bindings
+//open the url in the clipboard in new buffer
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
+//quit conkeror
 define_key(default_global_keymap, "A-q" , "quit");
-//define_key(default_global_keymap, "A-n", "find-url-new-window");
-//define_key(default_global_keymap, "A-a", "find-url-new-window");
+//enable/disable caret mode
 define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
+//open url in new buffer
 define_key(default_global_keymap, "A-t", "find-url-new-buffer");
 undefine_key(content_buffer_normal_keymap, "t");
 define_key(default_global_keymap, "t", "find-url-new-buffer");
 
 //// Key Aliases
 require("global-overlay-keymap");
-define_key_alias("C-m", "return");
-define_key_alias("C-a", "return");
-define_key_alias("A-c", "M-w");
-define_key_alias("A-v", "C-y");
-define_key_alias("C-J", "C-A-z");
-define_key_alias("C-L", "C-A-x");
+define_key_alias("C-m", "return");//emacs style
+define_key_alias("A-c", "M-w");//mac os style
+define_key_alias("A-v", "C-y");//mac os style
+define_key_alias("C-J", "C-A-z");//switch to first tab
+define_key_alias("C-L", "C-A-x");//switch to last buffer
 define_key_alias("C-o", "escape");
 
 // caret-mode disable by default
