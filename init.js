@@ -56,8 +56,8 @@ interactive("tmtxt-close-and-save-current-buffer", "close and save the current b
 				tmtxt_closed_buffers.shift(); // remove older item to save
 				// memory, just save maximum 10 buffers
 			  }
-			  tmtxt_closed_buffers.push(I.buffer.document.URL);
-			  kill_buffer(I.buffer);
+			  tmtxt_closed_buffers.push(I.buffer.document.URL); //add one item
+			  kill_buffer(I.buffer); //kill the current buffer
 			});
 //reopen the last closed buffer and remove it from the array
 interactive("tmtxt-open-closed-buffer", "open the last closed buffer", 
@@ -253,12 +253,22 @@ define_webjump("googlevn", "http://google.com.vn/");
 interactive("tmtxt-open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
             $browser_object = "http://facebook.com/");
 define_key(content_buffer_normal_keymap, "C-1", "tmtxt-open-facebook-new");
-interactive("tmtxt-open-tinhte-new", "Open Tinhte New Buffer", "follow-new-buffer",
-            $browser_object = "http://tinhte.vn/");
-define_key(content_buffer_normal_keymap, "C-2", "tmtxt-open-tinhte-new");
+interactive("tmtxt-open-myblog-new", "Open My Blog New Buffer", "follow-new-buffer",
+            $browser_object = "http://tommytxtruong.github.com/");
+define_key(content_buffer_normal_keymap, "C-2", "tmtxt-open-myblog-new");
 interactive("tmtxt-open-hn-new", "Open HN New Buffer", "follow-new-buffer",
             $browser_object = "http://news.ycombinator.com/");
 define_key(content_buffer_normal_keymap, "C-3", "tmtxt-open-hn-new");
+interactive("tmtxt-open-tinhte-new", "Open Tinhte New Buffer", "follow-new-buffer",
+            $browser_object = "http://tinhte.vn/");
+define_key(content_buffer_normal_keymap, "C-4", "tmtxt-open-tinhte-new");
+
+/// clear cache function
+interactive("tmtxt-cache-clear-all", "clear all cache",
+            function (I) {
+			  cache_clear(CACHE_ALL);
+            });
+define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
 
 // Use history not bookmark?
 url_completion_use_history = true;
@@ -525,7 +535,8 @@ function facebook_share(I){
                           f+p);
 };
 interactive("facebook-share", "Share the current site on Facebook.", facebook_share);
-define_key(default_global_keymap, "M-f", "facebook-share"); //also bind M-f to facebook share function
+//also bind M-f to facebook share function
+define_key(default_global_keymap, "M-f", "facebook-share");
 
 //Use bookmark and history on url completion
 url_completion_use_bookmarks = true;
@@ -566,3 +577,24 @@ interactive("colors-toggle", "toggle between document and forced colors",
                     session_pref(p, true);
                 }
             });
+
+// get tiny url for the current page
+// press * q and then c to generate and copy the tinyurl into clipboard
+define_browser_object_class(
+    "tinyurl", "Get a tinyurl for the current page",
+    function (I, prompt) {
+        check_buffer(I.buffer, content_buffer);
+        let createurl = 'http://tinyurl.com/api-create.php?url=' +
+            encodeURIComponent(
+                load_spec_uri_string(
+                    load_spec(I.buffer.top_frame)));
+        try {
+            var content = yield send_http_request(
+                load_spec({uri: createurl}));
+            yield co_return(content.responseText);
+        } catch (e) { }
+    });
+define_key(content_buffer_normal_keymap, "* q", "browser-object-tinyurl");
+
+/// open remote url in new tab not new frame
+url_remoting_fn = load_url_in_new_buffer;
