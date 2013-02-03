@@ -163,9 +163,9 @@ define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 // Custom key-bindings
 //// buffer change
 // next and previous buffer
-define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
+// define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
 define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
-define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
+// define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
 define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
 define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
@@ -183,7 +183,10 @@ define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
 define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
 define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
 define_key(content_buffer_normal_keymap, "C-E", "cmd_selectEndLine");
+define_key(content_buffer_normal_keymap, "C-A", "cmd_selectBeginLine");
 define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
+// navigation in emacs style
+define_key(default_global_keymap, "M-F", "cmd_selectWordNext");
 //// other key bindings
 //open the url in the clipboard in new buffer
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
@@ -245,9 +248,7 @@ define_webjump("pcworldVN", "http://pcworld.com.vn");
 define_webjump("hdvietnam", "http://hdvietnam.com");
 define_webjump("yeuamnhac", "http://yeuamnhac.com");
 define_webjump("demonoid", "http://demonoid.me");
-define_webjump("f", "http://www.facebook.com");
-define_webjump("lqd-dd", "http://lqd-dd.com/");
-define_webjump("googlevn", "http://google.com.vn/");
+define_webjump("ggvn", "http://google.com.vn/");
 
 //keyboard shorcut for often-used sites
 interactive("tmtxt-open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
@@ -536,7 +537,7 @@ function facebook_share(I){
 };
 interactive("facebook-share", "Share the current site on Facebook.", facebook_share);
 //also bind M-f to facebook share function
-define_key(default_global_keymap, "M-f", "facebook-share");
+//define_key(default_global_keymap, "M-f", "facebook-share");
 
 //Use bookmark and history on url completion
 url_completion_use_bookmarks = true;
@@ -598,3 +599,6 @@ define_key(content_buffer_normal_keymap, "* q", "browser-object-tinyurl");
 
 /// open remote url in new tab not new frame
 url_remoting_fn = load_url_in_new_buffer;
+
+/// enable adblock
+require("adblockplus.js");
