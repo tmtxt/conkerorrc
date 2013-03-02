@@ -163,9 +163,9 @@ define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 // Custom key-bindings
 //// buffer change
 // next and previous buffer
-// define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
+define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
 define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
-// define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
+define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
 define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
 define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
