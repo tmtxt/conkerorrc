@@ -195,9 +195,9 @@ define_key(default_global_keymap, "A-q" , "quit");
 //enable/disable caret mode
 define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
 //open url in new buffer
-define_key(default_global_keymap, "A-t", "find-url-new-buffer");
-undefine_key(content_buffer_normal_keymap, "t");
-define_key(default_global_keymap, "t", "find-url-new-buffer");
+// define_key(default_global_keymap, "A-t", "find-url-new-buffer");
+// undefine_key(content_buffer_normal_keymap, "t");
+// define_key(default_global_keymap, "t", "find-url-new-buffer");
 
 //// Key Aliases
 require("global-overlay-keymap");
