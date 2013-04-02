@@ -263,6 +263,9 @@ define_key(content_buffer_normal_keymap, "C-3", "tmtxt-open-hn-new");
 interactive("tmtxt-open-tinhte-new", "Open Tinhte New Buffer", "follow-new-buffer",
             $browser_object = "http://tinhte.vn/");
 define_key(content_buffer_normal_keymap, "C-4", "tmtxt-open-tinhte-new");
+interactive("tmtxt-open-linkedin-new", "Open Linkedin New Buffer", "follow-new-buffer",
+            $browser_object = "http://www.linkedin.com/");
+define_key(content_buffer_normal_keymap, "C-5", "tmtxt-open-linkedin-new");
 
 /// clear cache function
 interactive("tmtxt-cache-clear-all", "clear all cache",
