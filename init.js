@@ -1,3 +1,5 @@
+// TODO: quit hook: save session to another file along the default auto session file
+
 //mozrepl
 user_pref('extensions.mozrepl.autoStart', true);
 if ('@hyperstruct.net/mozlab/mozrepl;1' in Cc) {
@@ -164,18 +166,24 @@ define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 //// buffer change
 // next and previous buffer
 define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
+// define_key(default_global_keymap, "M-A-}", "buffer-previous"); //one hand user 
 define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
+// define_key(default_global_keymap, "M-A-.", "buffer-next"); //one hand user
 define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
 define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
 define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
+undefine_key(default_global_keymap, "C-x right");
 //// follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
 undefine_key(default_global_keymap, "q");
 define_key(content_buffer_normal_keymap, "q", "follow-new-buffer-background");
+define_key(default_global_keymap, "C-x right", "find-url-new-buffer");
+define_key(default_global_keymap, "C-t", "find-url-new-buffer");
 //// kill current buffer
 define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
 define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
+define_key(default_global_keymap, "A-k", "tmtxt-close-and-save-current-buffer");
 //reopen last closed buffer
 define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer")
 //// word selection
@@ -190,10 +198,12 @@ define_key(default_global_keymap, "M-F", "cmd_selectWordNext");
 //// other key bindings
 //open the url in the clipboard in new buffer
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
+define_key(content_buffer_normal_keymap, "A-page_down", "paste-url-new-buffer");
 //quit conkeror
 define_key(default_global_keymap, "A-q" , "quit");
 //enable/disable caret mode
-define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
+// define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
+// define_key(content_buffer_normal_keymap, "A-x", "cmd_cut")
 //open url in new buffer
 // define_key(default_global_keymap, "A-t", "find-url-new-buffer");
 // undefine_key(content_buffer_normal_keymap, "t");
@@ -255,8 +265,12 @@ interactive("tmtxt-open-facebook-new", "Open Facebook New Buffer", "follow-new-b
             $browser_object = "http://facebook.com/");
 define_key(content_buffer_normal_keymap, "C-1", "tmtxt-open-facebook-new");
 interactive("tmtxt-open-myblog-new", "Open My Blog New Buffer", "follow-new-buffer",
-            $browser_object = "http://tommytxtruong.github.com/");
+            $browser_object = "http://truongtx.me/");
 define_key(content_buffer_normal_keymap, "C-2", "tmtxt-open-myblog-new");
+interactive("tmtxt-open-myblog-local-new", "Open My Blog Localhost New Buffer",
+			"follow-new-buffer",
+            $browser_object = "http://localhost:4000/");
+define_key(content_buffer_normal_keymap, "C-@", "tmtxt-open-myblog-local-new");
 interactive("tmtxt-open-hn-new", "Open HN New Buffer", "follow-new-buffer",
             $browser_object = "http://news.ycombinator.com/");
 define_key(content_buffer_normal_keymap, "C-3", "tmtxt-open-hn-new");
