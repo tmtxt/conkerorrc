@@ -280,6 +280,9 @@ define_key(content_buffer_normal_keymap, "C-4", "tmtxt-open-tinhte-new");
 interactive("tmtxt-open-linkedin-new", "Open Linkedin New Buffer", "follow-new-buffer",
             $browser_object = "http://www.linkedin.com/");
 define_key(content_buffer_normal_keymap, "C-5", "tmtxt-open-linkedin-new");
+interactive("tmtxt-open-trello-new", "Open Trello New Buffer", "follow-new-buffer",
+            $browser_object = "https://trello.com/");
+define_key(content_buffer_normal_keymap, "C-6", "tmtxt-open-trello-new");
 
 /// clear cache function
 interactive("tmtxt-cache-clear-all", "clear all cache",
@@ -595,6 +598,7 @@ interactive("colors-toggle", "toggle between document and forced colors",
                     session_pref(p, true);
                 }
             });
+define_key(default_global_keymap, "A-n", "colors-toggle");
 
 // get tiny url for the current page
 // press * q and then c to generate and copy the tinyurl into clipboard
