@@ -173,12 +173,10 @@ define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
 define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
 define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
-undefine_key(default_global_keymap, "C-x right");
 //// follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
 undefine_key(default_global_keymap, "q");
 define_key(content_buffer_normal_keymap, "q", "follow-new-buffer-background");
-define_key(default_global_keymap, "C-x right", "find-url-new-buffer");
 define_key(default_global_keymap, "C-t", "find-url-new-buffer");
 //// kill current buffer
 define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
