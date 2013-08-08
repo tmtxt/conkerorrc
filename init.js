@@ -76,12 +76,12 @@ define_key(read_buffer_keymap, "A-i", "inspect-chrome");
 // Personal theme
 theme_load_paths.unshift("~/.conkerorrc/themes/");
 theme_unload("default");
-theme_load("tommytxtruong");
-interactive("tommytxtruong-theme", "Load my personal theme",
+theme_load("tmtxt");
+interactive("tmtxt-theme", "Load my personal theme",
             function(I) {
-                theme_load("tommytxtruong");
+                theme_load("tmtxt");
             });
-define_key(default_global_keymap, "A-u", "tommytxtruong-theme");
+define_key(default_global_keymap, "A-u", "tmtxt-theme");
 
 // gmail-mode
 require("page-modes/gmail.js");
@@ -207,6 +207,24 @@ define_key(default_global_keymap, "A-q" , "quit");
 // undefine_key(content_buffer_normal_keymap, "t");
 // define_key(default_global_keymap, "t", "find-url-new-buffer");
 
+// function define_key_alias (typed_key, generated_key) {
+//     var name = "generate-key-event:"+generated_key;
+//     interactive(name,
+//         "Generate a fake key press event for the key: "+generated_key,
+//         function (I) {
+//           var keys = generated_key.split(" ");
+//           call_after_timeout(function () {
+//             _.each(keys, function(key) {
+//               send_key_as_event(I.window,
+//                                 I.buffer.focused_element,
+//                                 key);
+//             });
+//           }, 0);
+//         });
+//   define_key(global_overlay_keymap, typed_key, name);
+//   global_overlay_keymap_mode(true);
+// }
+
 //// Key Aliases
 require("global-overlay-keymap");
 define_key_alias("C-m", "return");//emacs style
@@ -234,6 +252,8 @@ define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com",
 			  $description = "Google Search for yeuamnhac.com");
 define_webjump("g", "http://www.google.com/search?q=%s", 
 			  $description = "Google Search");
+define_webjump("rut", "http://www.google.com/search?q=%s%20site:rutracker.org",
+			  $description = "Google search for rutracker.org");
 define_webjump("yt", "http://www.youtube.com/results?search_query=%s",
 			  $description = "Youtue Search");
 define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s",
