@@ -196,6 +196,7 @@ define_key(default_global_keymap, "M-F", "cmd_selectWordNext");
 //// other key bindings
 //open the url in the clipboard in new buffer
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
+define_key(content_buffer_normal_keymap, "V", "paste-url-new-buffer");
 define_key(content_buffer_normal_keymap, "A-page_down", "paste-url-new-buffer");
 //quit conkeror
 define_key(default_global_keymap, "A-q" , "quit");
@@ -641,3 +642,7 @@ url_remoting_fn = load_url_in_new_buffer;
 
 /// enable adblock
 require("adblockplus.js");
+
+/// auto-exit hinting
+hints_auto_exit_delay = 1;
+hints_ambiguous_auto_exit_delay = 500;
