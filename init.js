@@ -1,16 +1,11 @@
 // TODO: quit hook: save session to another file along the default auto session file
 
-//mozrepl
+//mozrepl, localhost port 4242 default
 user_pref('extensions.mozrepl.autoStart', true);
-if ('@hyperstruct.net/mozlab/mozrepl;1' in Cc) {
-  let mozrepl = Cc['@hyperstruct.net/mozlab/mozrepl;1']
-    .getService(Ci.nsIMozRepl);
-  if (! mozrepl.isActive())
-    mozrepl.start(4242);
-}
 let (mozrepl_init = get_home_directory()) {
-    mozrepl_init.appendRelativePath(".mozrepl-conkeror.js");
-    session_pref('extensions.mozrepl.initUrl', make_uri(mozrepl_init).spec);
+  mozrepl_init.appendRelativePath(".conkerorrc");
+  mozrepl_init.appendRelativePath(".mozrepl-conkeror.js");
+  session_pref('extensions.mozrepl.initUrl', make_uri(mozrepl_init).spec);
 }
 
 // OSX mapping: Command => A | Option => M
@@ -20,6 +15,8 @@ modifiers.A = new modifier(function (event) { return event.metaKey; },
                            function (event) { event.metaKey = true; });
 
 define_key(default_global_keymap, "A-`", null, $fallthrough);
+
+session_pref("xpinstall.whitelist.required", false);
 
 // Some useful modules
 require("daemon.js");
