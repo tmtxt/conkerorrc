@@ -16,8 +16,10 @@ modifiers.A = new modifier(function (event) { return event.metaKey; },
 
 define_key(default_global_keymap, "A-`", null, $fallthrough);
 
+// install extension from unknow source
 session_pref("xpinstall.whitelist.required", false);
 
+// add directory dir inside .conkerorrc to load_paths
 function tmtxt_add_path(dir) {
     let (path = get_home_directory()) {
         path.appendRelativePath(".conkerorrc");
@@ -40,12 +42,6 @@ require("mode-line.js");
 add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
 // show how many buffers are currently loading
 add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
-
-// load_paths.unshift("file://~/.conkerorrc/modules/");
-require("favicon.js"); // they forgot this in new-tabs.js
-require("new-tabs.js");
-tab_bar_show_icon = true;
-tab_bar_show_index = true;
 
 tmtxt_add_path("config");
 require("appearance.js");
