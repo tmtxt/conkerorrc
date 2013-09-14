@@ -29,6 +29,8 @@ require("session.js");
 require("dom-inspector.js");
 require("page-modes/gmail.js");
 require("global-overlay-keymap");
+require("clicks-in-new-buffer.js");
+require("page-modes/google-search-results.js");
 
 // my config files
 tmtxt_add_path("config");
@@ -36,6 +38,7 @@ require("tmtxt-appearance.js");
 require("tmtxt-webjumps.js");
 require("tmtxt-buffer.js");
 require("tmtxt-modeline.js");
+require("tmtxt-keybindings.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -44,74 +47,6 @@ session_auto_save_auto_load = true;
 user_pref("signon.prefillForms", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
-
-
-
-// Custom key-bindings
-//// buffer change
-// next and previous buffer
-define_key(default_global_keymap, "A-z", "buffer-previous"); //one hand user
-// define_key(default_global_keymap, "M-A-}", "buffer-previous"); //one hand user 
-define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
-// define_key(default_global_keymap, "M-A-.", "buffer-next"); //one hand user
-define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
-define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
-define_key(default_global_keymap, "A-left", "buffer-previous"); //not convinience
-define_key(default_global_keymap, "A-right", "buffer-next");//not convinience
-//// follow new buffer background
-define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
-undefine_key(default_global_keymap, "q");
-define_key(content_buffer_normal_keymap, "q", "follow-new-buffer-background");
-define_key(default_global_keymap, "C-t", "find-url-new-buffer");
-//// word selection
-define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
-define_key(content_buffer_normal_keymap, "S-M-left", "cmd_selectWordPrevious");
-define_key(content_buffer_normal_keymap, "S-A-right", "cmd_selectEndLine");
-define_key(content_buffer_normal_keymap, "C-E", "cmd_selectEndLine");
-define_key(content_buffer_normal_keymap, "C-A", "cmd_selectBeginLine");
-define_key(content_buffer_normal_keymap, "S-A-left", "cmd_selectBeginLine");
-// navigation in emacs style
-define_key(default_global_keymap, "M-F", "cmd_selectWordNext");
-//// other key bindings
-//open the url in the clipboard in new buffer
-define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
-define_key(content_buffer_normal_keymap, "V", "paste-url-new-buffer");
-define_key(content_buffer_normal_keymap, "A-page_down", "paste-url-new-buffer");
-//quit conkeror
-define_key(default_global_keymap, "A-q" , "quit");
-//enable/disable caret mode
-// define_key(content_buffer_normal_keymap, "C-c", "caret-mode");
-// define_key(content_buffer_normal_keymap, "A-x", "cmd_cut")
-//open url in new buffer
-// define_key(default_global_keymap, "A-t", "find-url-new-buffer");
-// undefine_key(content_buffer_normal_keymap, "t");
-// define_key(default_global_keymap, "t", "find-url-new-buffer");
-
-// function define_key_alias (typed_key, generated_key) {
-//     var name = "generate-key-event:"+generated_key;
-//     interactive(name,
-//         "Generate a fake key press event for the key: "+generated_key,
-//         function (I) {
-//           var keys = generated_key.split(" ");
-//           call_after_timeout(function () {
-//             _.each(keys, function(key) {
-//               send_key_as_event(I.window,
-//                                 I.buffer.focused_element,
-//                                 key);
-//             });
-//           }, 0);
-//         });
-//   define_key(global_overlay_keymap, typed_key, name);
-//   global_overlay_keymap_mode(true);
-// }
-
-//// Key Aliases
-
-define_key_alias("C-m", "return");//emacs style
-define_key_alias("A-c", "M-w");//mac os style
-define_key_alias("A-v", "C-y");//mac os style
-
-define_key_alias("C-o", "escape");
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
@@ -133,7 +68,7 @@ xkcd_add_title = true;
 download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 // Load clicked link in background
-require("clicks-in-new-buffer.js");
+
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 // Replacement of built-in C-x b
@@ -252,7 +187,7 @@ url_completion_use_bookmarks = true;
 url_completion_use_history = true;
 
 //google search mode
-require("page-modes/google-search-results.js");
+
 
 //viewmarks extension, to manage bookmarks
 interactive("viewmarks",
