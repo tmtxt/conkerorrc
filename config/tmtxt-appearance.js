@@ -58,4 +58,4 @@ interactive("colors-toggle", "toggle between document and forced colors",
             });
 define_key(default_global_keymap, "A-n", "colors-toggle");
 
-provide("appearance");
+provide("tmtxt-appearance");

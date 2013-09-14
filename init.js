@@ -41,7 +41,7 @@ add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
 add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
 
 tmtxt_add_path("config");
-require("appearance.js");
+require("tmtxt-appearance.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
