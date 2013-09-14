@@ -655,8 +655,5 @@ let (path = get_home_directory()) {
   load_paths.unshift(make_uri(path).spec);
 
   // include the library
-  require("conkeror-mac-modeline-buttons.js");
-
-  // some config
-  
+  require("conkeror-mac-modeline-buttons.js");  
 };
