@@ -28,7 +28,7 @@ define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
 define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
 define_key(default_global_keymap, "A-k", "tmtxt-close-and-save-current-buffer");
 //reopen last closed buffer
-define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer")
-define_key(default_global_keymap, "A-T", "tmtxt-open-closed-buffer")
+define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer");
+define_key(default_global_keymap, "A-T", "tmtxt-open-closed-buffer");
 
 provide("tmtxt-buffer");

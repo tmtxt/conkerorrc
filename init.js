@@ -1,5 +1,3 @@
-// TODO: quit hook: save session to another file along the default auto session file
-
 //mozrepl, localhost port 4242 default
 user_pref('extensions.mozrepl.autoStart', true);
 let (mozrepl_init = get_home_directory()) {
@@ -30,20 +28,16 @@ require("daemon.js");
 require("session.js");
 require("dom-inspector.js");
 
-// mode line
-// the bar in Conkeror's gui between the browser and the minibuffer.
-require("mode-line.js");
-// some widgets for this mode
-// show how many buffers are in the current window and which one is currently
-// selected
-add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
-// show how many buffers are currently loading
-add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+
+
+
+
 
 tmtxt_add_path("config");
 require("tmtxt-appearance.js");
 require("tmtxt-webjumps.js");
 require("tmtxt-buffer.js");
+require("tmtxt-modeline.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -428,14 +422,3 @@ url_remoting_fn = load_url_in_new_buffer;
 /// auto-exit hinting
 hints_auto_exit_delay = 1;
 hints_ambiguous_auto_exit_delay = 500;
-
-// conkeror mac modeline buttons
-let (path = get_home_directory()) {
-  // add to load path
-  path.appendRelativePath(".conkerorrc");
-  path.appendRelativePath("conkeror-mac-modeline-buttons");
-  load_paths.unshift(make_uri(path).spec);
-
-  // include the library
-  require("conkeror-mac-modeline-buttons.js");  
-};
