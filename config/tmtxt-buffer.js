@@ -77,6 +77,25 @@ interactive("switch-to-recent-buffer",
 define_key(default_global_keymap, "C-tab", "switch-to-recent-buffer");
 
 
+////Switch to last buffer
+// this is for older version of conkeror 
+// define_key(default_global_keymap, "C-S-tab",
+//           function (I)
+//           {
+//               switch_to_buffer(I.window,
+//                                I.window.buffers.buffer_list[1])
+//           });
+// this is for newer version of conkeror
+interactive("switch-to-last-buffer", "Switch to the last visited buffer",
+            function (I) {
+                switch_to_buffer(I.window,
+                                 // This is the way to go in newer
+                                 // conkeror versions
+                                 I.window.buffers.buffer_history[1])
+            });
+define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
+
+
 //// Use numeric key to switch buffers (1-9)
 function define_switch_buffer_key (key, buf_num) {
     define_key(default_global_keymap, key,
