@@ -28,6 +28,7 @@ require("daemon.js");
 require("session.js");
 require("dom-inspector.js");
 require("page-modes/gmail.js");
+require("global-overlay-keymap");
 
 // my config files
 tmtxt_add_path("config");
@@ -43,8 +44,6 @@ session_auto_save_auto_load = true;
 user_pref("signon.prefillForms", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
-
-
 
 
 
@@ -107,12 +106,11 @@ define_key(default_global_keymap, "A-q" , "quit");
 // }
 
 //// Key Aliases
-require("global-overlay-keymap");
+
 define_key_alias("C-m", "return");//emacs style
 define_key_alias("A-c", "M-w");//mac os style
 define_key_alias("A-v", "C-y");//mac os style
-define_key_alias("C-J", "C-A-z");//switch to first tab
-define_key_alias("C-L", "C-A-x");//switch to last buffer
+
 define_key_alias("C-o", "escape");
 
 // caret-mode disable by default

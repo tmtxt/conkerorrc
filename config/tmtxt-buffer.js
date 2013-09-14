@@ -126,6 +126,10 @@ define_key(default_global_keymap, "C-A-x",
                                I.window.buffers.get_buffer(I.window.buffers.count - 1));
           });
 
+// aliases
+define_key_alias("C-J", "C-A-z");//switch to first tab
+define_key_alias("C-L", "C-A-x");//switch to last buffer
+
 
 //// Stop loading all buffer (key A-h)
 define_key(default_global_keymap, "A-h",
