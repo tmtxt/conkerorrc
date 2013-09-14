@@ -18,6 +18,14 @@ define_key(default_global_keymap, "A-`", null, $fallthrough);
 
 session_pref("xpinstall.whitelist.required", false);
 
+function tmtxt_add_path(dir) {
+    let (path = get_home_directory()) {
+        path.appendRelativePath(".conkerorrc");
+        path.appendRelativePath(dir);
+        load_paths.unshift(make_uri(path).spec);
+    };
+}
+
 // Some useful modules
 require("daemon.js");
 require("session.js");
@@ -38,6 +46,9 @@ require("favicon.js"); // they forgot this in new-tabs.js
 require("new-tabs.js");
 tab_bar_show_icon = true;
 tab_bar_show_index = true;
+
+tmtxt_add_path("config");
+require("appearance.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -70,15 +81,7 @@ interactive("tmtxt-open-closed-buffer", "open the last closed buffer",
 define_key(default_global_keymap, "A-i", "inspect-chrome");
 define_key(read_buffer_keymap, "A-i", "inspect-chrome");
 
-// Personal theme
-theme_load_paths.unshift("~/.conkerorrc/themes/");
-theme_unload("default");
-theme_load("tmtxt");
-interactive("tmtxt-theme", "Load my personal theme",
-            function(I) {
-                theme_load("tmtxt");
-            });
-define_key(default_global_keymap, "A-u", "tmtxt-theme");
+
 
 // gmail-mode
 require("page-modes/gmail.js");
