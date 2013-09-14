@@ -656,7 +656,7 @@ hints_ambiguous_auto_exit_delay = 500;
 load_paths.unshift("chrome://conkeror-contrib/content/");
 require("mode-line-buttons.js");
 
-
+/// Function to replace 
 function tmtxt_make_button_widget (command, attributes) {
     if (typeof attributes == "string")
         // Simple case
@@ -713,12 +713,16 @@ tmtxt_standard_mode_line_buttons = [
 /// Interactive function to show the mode line buttons
 interactive("tmtxt-add-mode-line-nav-buttons", "Add basic navigation buttons to the mode line",
 			function(I){
-			  // add the button
-			  tmtxt_mode_line_add_buttons(tmtxt_standard_mode_line_buttons, true);
+			  // check if the array that hold all the button widgets contains no element
+			  if(tmtxt_mode_line_button_widgets.length == 0){
+				// add the button
+				tmtxt_mode_line_add_buttons(tmtxt_standard_mode_line_buttons, true);
 
-			  // restart mode line
-			  mode_line_mode(false);
-			  mode_line_mode(true);
+				// restart mode line
+				mode_line_mode(false);
+				mode_line_mode(true);
+			  }
+			  
 			});
 
 /// Interactive function to hide the mode line buttons
@@ -728,6 +732,9 @@ interactive("tmtxt-remove-mode-line-nav-buttons", "Remove navigation buttons fro
 			  for(var i=0; i<tmtxt_mode_line_button_widgets.length;i++){
 				remove_hook("mode_line_hook", mode_line_adder(tmtxt_mode_line_button_widgets[i]));
 			  }
+
+			  // remove all widgets in the array
+			  tmtxt_mode_line_button_widgets.length = 0;
 
 			  // restart mode line
 			  mode_line_mode(false);
