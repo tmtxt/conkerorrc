@@ -76,4 +76,57 @@ interactive("switch-to-recent-buffer",
             });
 define_key(default_global_keymap, "C-tab", "switch-to-recent-buffer");
 
+
+//// Use numeric key to switch buffers (1-9)
+function define_switch_buffer_key (key, buf_num) {
+    define_key(default_global_keymap, key,
+               function (I) {
+                   switch_to_buffer(I.window,
+                                    I.window.buffers.get_buffer(buf_num));
+               });
+}
+for (let i = 0; i < 9; ++i) {
+    define_switch_buffer_key(String((i+1)%10), i);
+}
+
+
+//// Use  to swtich to first buffer
+define_switch_buffer_key("C-A-z", 0);
+
+//// Switch to last buffer
+define_key(default_global_keymap, "0",
+          function (I)
+          {
+              switch_to_buffer(I.window,
+                               I.window.buffers.get_buffer(I.window.buffers.count - 1));
+          });
+define_key(default_global_keymap, "C-A-x",
+          function (I)
+          {
+              switch_to_buffer(I.window,
+                               I.window.buffers.get_buffer(I.window.buffers.count - 1));
+          });
+
+
+//// Stop loading all buffer (key A-h)
+define_key(default_global_keymap, "A-h",
+          function (I)
+          {
+              for (var i = 0; i < I.window.buffers.count; i++)
+              {
+                  stop_loading(I.window.buffers.get_buffer(i));
+              }
+          });
+
+
+//// reload all buffer (key A-r)
+define_key(default_global_keymap, "A-r",
+          function (I)
+          {
+              for (var i = 0; i < I.window.buffers.count; i++)
+              {
+                  reload(I.window.buffers.get_buffer(i));
+              }
+          });
+
 provide("tmtxt-buffer");
