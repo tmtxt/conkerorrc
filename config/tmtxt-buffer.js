@@ -22,7 +22,6 @@ interactive("tmtxt-open-closed-buffer", "open the last closed buffer",
 				tmtxt_closed_buffers.pop();
 			  }
 			});
-
 //// kill current buffer
 define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
 define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
@@ -30,5 +29,51 @@ define_key(default_global_keymap, "A-k", "tmtxt-close-and-save-current-buffer");
 //reopen last closed buffer
 define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer");
 define_key(default_global_keymap, "A-T", "tmtxt-open-closed-buffer");
+
+// Replacement of built-in buffer switcher
+minibuffer.prototype.read_recent_buffer = function () {
+    var window = this.window;
+    var buffer = this.window.buffers.current;
+    keywords(arguments, $prompt = "Buffer:",
+             $default = buffer,
+             $history = "buffer");
+    var buffers = window.buffers.buffer_history.slice(0);
+    buffers.push(buffers.shift());
+    var completer = all_word_completer(
+        $completions = buffers,
+        $get_string = function (x) {
+            return ' ' + x.title;
+        },
+        $get_description = function (x) x.description,
+        $get_icon = (read_buffer_show_icons ?
+                     function (x) x.icon : null)
+    );
+    var result = yield this.read(
+        $keymap = read_buffer_keymap,
+        $prompt = arguments.$prompt,
+        $history = arguments.$history,
+        $completer = completer,
+        $enable_icons = read_buffer_show_icons,
+        $match_required = true,
+        $auto_complete = "buffer",
+        $auto_complete_initial = true,
+        $auto_complete_delay = 0,
+        $default_completion = arguments.$default
+    );
+    yield co_return(result);
+};
+interactive("switch-to-recent-buffer",
+            "Switch to a buffer specified in the minibuffer.  List of buffers "+
+            "will be ordered by recency.",
+            function (I) {
+              switch_to_buffer(
+                I.window,
+                (yield I.minibuffer.read_recent_buffer(
+                  $prompt = "Switch to buffer:",
+                  $default = (I.window.buffers.count > 1 ?
+                              I.window.buffers.buffer_history[1] :
+                              I.buffer))));
+            });
+define_key(default_global_keymap, "C-tab", "switch-to-recent-buffer");
 
 provide("tmtxt-buffer");

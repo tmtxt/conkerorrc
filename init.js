@@ -27,12 +27,9 @@ function tmtxt_add_path(dir) {
 require("daemon.js");
 require("session.js");
 require("dom-inspector.js");
+require("page-modes/gmail.js");
 
-
-
-
-
-
+// my config files
 tmtxt_add_path("config");
 require("tmtxt-appearance.js");
 require("tmtxt-webjumps.js");
@@ -41,21 +38,6 @@ require("tmtxt-modeline.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
-
-
-
-define_key(default_global_keymap, "A-i", "inspect-chrome");
-define_key(read_buffer_keymap, "A-i", "inspect-chrome");
-
-
-
-// gmail-mode
-require("page-modes/gmail.js");
-define_key(gmail_keymap, "v", null, $fallthrough);
-define_key(gmail_keymap, "space", null, $fallthrough);
-define_key(gmail_keymap, "S-space", null, $fallthrough);
-define_key(gmail_keymap, "page_up", null, $fallthrough);
-define_key(gmail_keymap, "page_down", null, $fallthrough);
 
 // form
 user_pref("signon.prefillForms", true);
@@ -244,59 +226,7 @@ clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 //     yield co_return(result);
 // };
 
-// Replacement of built-in buffer switcher
-minibuffer.prototype.read_recent_buffer = function () {
-    var window = this.window;
-    var buffer = this.window.buffers.current;
-    keywords(arguments, $prompt = "Buffer:",
-             $default = buffer,
-             $history = "buffer");
-    var buffers = window.buffers.buffer_history.slice(0);
-    buffers.push(buffers.shift());
-    var completer = all_word_completer(
-        $completions = buffers,
-        $get_string = function (x) {
-            return ' ' + x.title;
-        },
-        $get_description = function (x) x.description,
-        $get_icon = (read_buffer_show_icons ?
-                     function (x) x.icon : null)
-    );
-    var result = yield this.read(
-        $keymap = read_buffer_keymap,
-        $prompt = arguments.$prompt,
-        $history = arguments.$history,
-        $completer = completer,
-        $enable_icons = read_buffer_show_icons,
-        $match_required = true,
-        $auto_complete = "buffer",
-        $auto_complete_initial = true,
-        $auto_complete_delay = 0,
-        $default_completion = arguments.$default
-    );
-    yield co_return(result);
-};
 
-interactive("switch-to-recent-buffer",
-            "Switch to a buffer specified in the minibuffer.  List of buffers "+
-            "will be ordered by recency.",
-            function (I) {
-              switch_to_buffer(
-                I.window,
-                (yield I.minibuffer.read_recent_buffer(
-                  $prompt = "Switch to buffer:",
-                  $default = (I.window.buffers.count > 1 ?
-                              I.window.buffers.buffer_history[1] :
-                              I.buffer))));
-            });
-
-define_key(default_global_keymap, "C-x B", "switch-to-recent-buffer");
-define_key(default_global_keymap, "C-tab", "switch-to-recent-buffer");
-//define_key(read_buffer_keymap, "C-tab", "minibuffer-complete");
-define_key(read_buffer_keymap, "C-S-tab", "minibuffer-complete-previous");
-define_key(default_global_keymap, "A-return", "switch-to-recent-buffer");
-define_key(read_buffer_keymap, "A-return", "minibuffer-complete");
-define_key(read_buffer_keymap, "A-S-return", "minibuffer-complete-previous");
 
 // Readability tool
 interactive("readability_arc90",
