@@ -43,6 +43,7 @@ require("tmtxt-readability.js");
 require("tmtxt-useragent.js");
 require("tmtxt-minibuffer.js");
 require("tmtxt-download.js");
+require("tmtxt-sites.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -91,22 +92,6 @@ session_pref("xpinstall.whitelist.required", false);
 Components.classes["@mozilla.org/login-manager;1"]
     .getService(Components.interfaces.nsILoginManager);
 
-//Facebook share
-function facebook_share(I){
-    var d=I.buffer.document;
-    var f='http://www.facebook.com/sharer';
-    var l=d.location, e=encodeURIComponent;
-    var p='.php?src=bm&v=4&i=1279479932&u='+e(l.href)+'&t='+e(d.title);
-    browser_object_follow(I.buffer,
-                          OPEN_NEW_BUFFER,
-                          f+p);
-};
-interactive("facebook-share", "Share the current site on Facebook.", facebook_share);
-//also bind M-f to facebook share function
-//define_key(default_global_keymap, "M-f", "facebook-share");
-
-
-
 //viewmarks extension, to manage bookmarks
 interactive("viewmarks",
     "Open ViewMarks window.",
@@ -114,29 +99,8 @@ interactive("viewmarks",
         make_chrome_window('chrome://viewmarks/content/viewmark.xul');
     });
 
-// get tiny url for the current page
-// press * q and then c to generate and copy the tinyurl into clipboard
-define_browser_object_class(
-    "tinyurl", "Get a tinyurl for the current page",
-    function (I, prompt) {
-        check_buffer(I.buffer, content_buffer);
-        let createurl = 'http://tinyurl.com/api-create.php?url=' +
-            encodeURIComponent(
-                load_spec_uri_string(
-                    load_spec(I.buffer.top_frame)));
-        try {
-            var content = yield send_http_request(
-                load_spec({uri: createurl}));
-            yield co_return(content.responseText);
-        } catch (e) { }
-    });
-define_key(content_buffer_normal_keymap, "* q", "browser-object-tinyurl");
-
 /// open remote url in new tab not new frame
 url_remoting_fn = load_url_in_new_buffer;
-
-/// enable adblock
-// require("adblockplus.js");
 
 /// auto-exit hinting
 hints_auto_exit_delay = 1;
