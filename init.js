@@ -40,6 +40,7 @@ require("tmtxt-buffer.js");
 require("tmtxt-modeline.js");
 require("tmtxt-keybindings.js");
 require("tmtxt-readability.js");
+require("tmtxt-useragent.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
