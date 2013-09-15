@@ -42,6 +42,7 @@ require("tmtxt-keybindings.js");
 require("tmtxt-readability.js");
 require("tmtxt-useragent.js");
 require("tmtxt-minibuffer.js");
+require("tmtxt-download.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -64,8 +65,7 @@ define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
 // XKCD
 xkcd_add_title = true;
 
-// Download in background
-download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
+
 
 // Load clicked link in background
 
@@ -90,10 +90,6 @@ session_pref("xpinstall.whitelist.required", false);
 //Enable Password Manager
 Components.classes["@mozilla.org/login-manager;1"]
     .getService(Components.interfaces.nsILoginManager);
-
-// Set default download location to ~/Downloads
-cwd=get_home_directory(); 
-cwd.append("Downloads"); 
 
 //Facebook share
 function facebook_share(I){
