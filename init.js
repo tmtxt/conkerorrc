@@ -44,14 +44,12 @@ require("tmtxt-useragent.js");
 require("tmtxt-minibuffer.js");
 require("tmtxt-download.js");
 require("tmtxt-sites.js");
+require("tmtxt-form.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
 
-// form
-user_pref("signon.prefillForms", true);
-user_pref("signon.autofillForms", true);
-user_pref("signon.rememberSignons", true);
+
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
@@ -87,10 +85,6 @@ function repl_context() {
 
 // Allow installing extension from any source
 session_pref("xpinstall.whitelist.required", false);
-
-//Enable Password Manager
-Components.classes["@mozilla.org/login-manager;1"]
-    .getService(Components.interfaces.nsILoginManager);
 
 //viewmarks extension, to manage bookmarks
 interactive("viewmarks",
