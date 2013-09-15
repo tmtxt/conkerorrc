@@ -6,6 +6,9 @@ define_webjump("bookmark",
                                               $match_required = true),
                $description = "Visit a conkeror bookmark");
 
+// Default webjump
+read_url_handler_list = [read_url_make_default_webjump_handler("google")];
+
 // searching
 define_webjump("g", "http://www.google.com/search?q=%s", 
 			  $description = "Google Search");

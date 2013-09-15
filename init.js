@@ -49,8 +49,6 @@ require("tmtxt-form.js");
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
 
-
-
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
 
@@ -61,16 +59,11 @@ interactive("tmtxt-cache-clear-all", "clear all cache",
             });
 define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
 
-// XKCD
-xkcd_add_title = true;
-
-
+/// open remote url in new tab not new frame
+url_remoting_fn = load_url_in_new_buffer;
 
 // Load clicked link in background
-
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
-
-
 
 // What's this?
 function repl_context() {
@@ -93,12 +86,6 @@ interactive("viewmarks",
         make_chrome_window('chrome://viewmarks/content/viewmark.xul');
     });
 
-/// open remote url in new tab not new frame
-url_remoting_fn = load_url_in_new_buffer;
-
 /// auto-exit hinting
 hints_auto_exit_delay = 1;
 hints_ambiguous_auto_exit_delay = 500;
-
-// Default webjump
-read_url_handler_list = [read_url_make_default_webjump_handler("google")];
