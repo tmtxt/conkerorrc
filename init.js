@@ -41,6 +41,7 @@ require("tmtxt-modeline.js");
 require("tmtxt-keybindings.js");
 require("tmtxt-readability.js");
 require("tmtxt-useragent.js");
+require("tmtxt-minibuffer.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -59,9 +60,6 @@ interactive("tmtxt-cache-clear-all", "clear all cache",
 			  cache_clear(CACHE_ALL);
             });
 define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
-
-// Use history not bookmark?
-url_completion_use_history = true;
 
 // XKCD
 xkcd_add_title = true;
@@ -111,11 +109,6 @@ interactive("facebook-share", "Share the current site on Facebook.", facebook_sh
 //also bind M-f to facebook share function
 //define_key(default_global_keymap, "M-f", "facebook-share");
 
-//Use bookmark and history on url completion
-url_completion_use_bookmarks = true;
-url_completion_use_history = true;
-
-//google search mode
 
 
 //viewmarks extension, to manage bookmarks
@@ -152,3 +145,6 @@ url_remoting_fn = load_url_in_new_buffer;
 /// auto-exit hinting
 hints_auto_exit_delay = 1;
 hints_ambiguous_auto_exit_delay = 500;
+
+// Default webjump
+read_url_handler_list = [read_url_make_default_webjump_handler("google")];
