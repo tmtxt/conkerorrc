@@ -1,3 +1,6 @@
 [submodule "modules/cmmb"]
 	path = modules/cmmb
 	url = git@github.com:tmtxt/conkeror-mac-modeline-buttons.git
+[submodule "modules/cefm"]
+	path = modules/cefm
+	url = git@github.com:tmtxt/conkeror-extended-facebook-mode.git
