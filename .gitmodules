@@ -1,0 +1,3 @@
+[submodule "modules/cmmb"]
+	path = modules/cmmb
+	url = git@github.com:tmtxt/conkeror-mac-modeline-buttons.git
