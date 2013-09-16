@@ -38,6 +38,7 @@ require("tmtxt-minibuffer.js");
 require("tmtxt-download.js");
 require("tmtxt-sites.js");
 require("tmtxt-form.js");
+require("tmtxt-facebook.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
