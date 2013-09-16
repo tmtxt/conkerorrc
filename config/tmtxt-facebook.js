@@ -14,8 +14,16 @@ define_key(facebook_keymap, "l", null, $fallthrough);
 define_key(facebook_keymap, "m", null, $fallthrough);
 define_key(facebook_keymap, "c", null, $fallthrough);
 
-// interactive command to open selected story in new buffer
-interactive("facebook-open-current-story-new-buffer", null, function (I) {
+// interactive command to open selected story
+// new buffer
+interactive("facebook-open-current-story-new-buffer-background", null, function (I) {
+  var link = facebook_mode_find_story_link(I);
+  load_url_in_new_buffer_background(link,I.window);
+  });
+define_key(facebook_keymap, "C-O", "facebook-open-current-story-new-buffer-background");
+
+// function for inspecting and finding the link of selected story
+function facebook_mode_find_story_link(I){
   var doc = I.buffer.document;
   var selectedStory = doc.querySelector(".selectedStorySimple");
   if(selectedStory == null){
@@ -26,12 +34,10 @@ interactive("facebook-open-current-story-new-buffer", null, function (I) {
 	  I.minibuffer.message("Cannot find timestamp link");
 	} else {
 	  var link = timestamp.parentNode;
-	  load_url_in_new_buffer_background(link,I.window);
+	  return link;
 	}
-  }});
-define_key(facebook_keymap, "C-O", "facebook-open-current-story-new-buffer");
-
-
+  }
+}
 
 define_keymaps_page_mode("facebook-mode",
     build_url_regexp($domain = "facebook",
