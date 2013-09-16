@@ -40,6 +40,8 @@ interactive("facebook-open-current-story-new-buffer", null, function (I) {
 interactive("facebook-open-current-story-new-buffer-background", null, function (I) {
   facebook_mode_find_story_link(I, load_url_in_new_buffer_background);
   });
+
+// bind key
 define_key(facebook_keymap, "C-M-o", "facebook-open-current-story-new-buffer");
 define_key(facebook_keymap, "C-O", "facebook-open-current-story-new-buffer-background");
 
