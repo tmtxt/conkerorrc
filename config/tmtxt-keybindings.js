@@ -27,6 +27,11 @@ define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
 // find url in new buffer
 define_key(default_global_keymap, "C-t", "find-url-new-buffer");
 define_key(default_global_keymap, "A-t", "find-url-new-buffer");
+define_key(default_global_keymap, "o", "find-url-new-buffer");
+
+// vim style navigation
+define_key(content_buffer_normal_keymap, "k", "cmd_scrollLineUp");
+define_key(content_buffer_normal_keymap, "j", "cmd_scrollLineDown");
 
 //quit conkeror
 define_key(default_global_keymap, "A-q" , "quit");
