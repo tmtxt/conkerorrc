@@ -26,5 +26,7 @@ let (path = get_home_directory()) {
 define_key(facebook_keymap, "C-M-o", "facebook-open-current-story-new-buffer");
 define_key(facebook_keymap, "C-O", "facebook-open-current-story-new-buffer-background");
 define_key(facebook_keymap, "C-C", "facebook-cycle-conversations");
+define_key(facebook_keymap, "C-I", "facebook-scroll-up-current-coversation");
+define_key(facebook_keymap, "C-K", "facebook-scroll-down-current-coversation");
 
 provide("tmtxt-facebook");
