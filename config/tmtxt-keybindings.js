@@ -5,10 +5,16 @@ define_key(default_global_keymap, "C-j", "buffer-previous"); //two hands user
 define_key(default_global_keymap, "A-x", "buffer-next"); //one hand user
 define_key(default_global_keymap, "C-l", "buffer-next"); //two hands user
 
-//// follow new buffer background
+// follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
 undefine_key(content_buffer_normal_keymap, "F");
 define_key(content_buffer_normal_keymap, "F", "follow-new-buffer-background");
+
+// find url new buffer
+define_key(default_global_keymap, "o", "find-url-new-buffer");
+undefine_key(content_buffer_normal_keymap, "t");
+undefine_key(default_global_keymap, "t");
+define_key(default_global_keymap, "t", "find-url-new-buffer");
 
 //// text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
@@ -30,7 +36,6 @@ define_key(content_buffer_normal_keymap, "G", "cmd_scrollBottom");
 // other key bindings
 define_key(default_global_keymap, "A-q" , "quit");
 define_key(content_buffer_normal_keymap, "C-A-v", "paste-url-new-buffer");
-define_key(default_global_keymap, "o", "find-url-new-buffer");
 
 //// Key Aliases
 define_key_alias("C-m", "return"); //emacs style
