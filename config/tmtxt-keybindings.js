@@ -32,6 +32,9 @@ undefine_key(content_buffer_normal_keymap, "g");
 define_key(content_buffer_normal_keymap, "g g", "scroll-top-left");
 undefine_key(content_buffer_normal_keymap, "G");
 define_key(content_buffer_normal_keymap, "G", "cmd_scrollBottom");
+undefine_key(content_buffer_normal_keymap, "B");
+define_key(content_buffer_normal_keymap, "L", "back");
+define_key(content_buffer_normal_keymap, "H", "forward");
 
 // other key bindings
 define_key(default_global_keymap, "A-q" , "quit");
