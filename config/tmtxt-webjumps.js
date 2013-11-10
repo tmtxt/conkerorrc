@@ -64,8 +64,8 @@ define_key(content_buffer_normal_keymap, "C-4", "tmtxt-open-tinhte-new");
 interactive("tmtxt-open-linkedin-new", "Open Linkedin New Buffer", "follow-new-buffer",
             $browser_object = "http://www.linkedin.com/");
 define_key(content_buffer_normal_keymap, "C-5", "tmtxt-open-linkedin-new");
-interactive("tmtxt-open-trello-new", "Open Trello New Buffer", "follow-new-buffer",
-            $browser_object = "https://trello.com/");
-define_key(content_buffer_normal_keymap, "C-6", "tmtxt-open-trello-new");
+interactive("tmtxt-open-twitter-new", "Open Twitter New Buffer", "follow-new-buffer",
+            $browser_object = "https://twitter.com/");
+define_key(content_buffer_normal_keymap, "C-6", "tmtxt-open-twitter-new");
 
 provide("tmtxt-webjumps")
