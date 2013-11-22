@@ -23,11 +23,16 @@ let (path = get_home_directory()) {
 };
 
 // bind key for facebook mode
-define_key(facebook_keymap, "C-M-o", "facebook-open-current-story-new-buffer");
-define_key(facebook_keymap, "C-O", "facebook-open-current-story-new-buffer-background");
-define_key(facebook_keymap, "A-o", "facebook-open-current-story-new-buffer-background");
-define_key(facebook_keymap, "C-C", "facebook-cycle-conversations");
-define_key(facebook_keymap, "C-I", "facebook-scroll-up-current-coversation");
-define_key(facebook_keymap, "C-K", "facebook-scroll-down-current-coversation");
+define_key(facebook_keymap, "C-M-o", "cefm-open-current-story-new-buffer");
+define_key(facebook_keymap, "C-O", "cefm-open-current-story-new-buffer-background");
+define_key(facebook_keymap, "A-o", "cefm-open-current-story-new-buffer-background");
+define_key(facebook_keymap, "C-C", "cefm-cycle-conversations");
+define_key(facebook_keymap, "C-I", "cefm-scroll-up-current-conversation");
+define_key(facebook_keymap, "C-K", "cefm-scroll-down-current-conversation");
+define_key(facebook_keymap, "C-M-E", "cefm-expand-content");
+define_key(facebook_keymap, "1", "cefm-open-home");
+define_key(facebook_keymap, "3", "cefm-open-friend-request");
+define_key(facebook_keymap, "4", "cefm-open-messages");
+define_key(facebook_keymap, "5", "cefm-open-notification");
 
 provide("tmtxt-facebook");

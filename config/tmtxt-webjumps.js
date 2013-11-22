@@ -67,5 +67,11 @@ define_key(content_buffer_normal_keymap, "C-5", "tmtxt-open-linkedin-new");
 interactive("tmtxt-open-twitter-new", "Open Twitter New Buffer", "follow-new-buffer",
             $browser_object = "https://twitter.com/");
 define_key(content_buffer_normal_keymap, "C-6", "tmtxt-open-twitter-new");
+interactive("tmtxt-open-google-plus-new", "Open Google+ New Buffer", "follow-new-buffer",
+            $browser_object = "https://plus.google.com/");
+define_key(content_buffer_normal_keymap, "C-7", "tmtxt-open-google-plus-new");
+interactive("tmtxt-open-aria2-webui", "Open aria2 webui", "follow-new-buffer",
+            $browser_object = "file:///Volumes/tmtxt/webui-aria2/index.html");
+define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
 
 provide("tmtxt-webjumps")
