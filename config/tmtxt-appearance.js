@@ -3,6 +3,17 @@ theme_load_paths.unshift("~/.conkerorrc/themes/");
 theme_unload("default");
 theme_load("tmtxt");
 
+function tmtxt_reload_theme () {
+    theme_unload("tmtxt");
+    theme_load("tmtxt");
+}
+interactive("tmtxt-theme", "Load my personal theme", tmtxt_reload_theme);
+function test_theme_reload_theme () {
+    theme_unload("test-theme");
+    theme_load("test-theme");
+}
+interactive("test-theme", "Load my personal theme", test_theme_reload_theme);
+
 // tab bar
 require("favicon.js");
 require("new-tabs.js");

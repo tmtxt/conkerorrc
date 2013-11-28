@@ -1,0 +1,181 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#minibuffer {
+  border-top: 0px solid #99B1F3;
+  font-family: DejaVu Sans Mono, Menlo;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  color: #000000 !important;
+
+  /* position: fixed; */
+  /* top: 500px; */
+  /* width: 100%; */
+  /* left: 10%; */
+  /* opacity: 0.75; */
+}
+
+#minibuffer-prompt {
+  font-weight: bold;
+  color: cyan;
+  position: fixed !important;
+  top: 100px;
+  left: 15%;
+}
+
+#minibuffer-input {
+  color: #00FFFF !important;
+  background-color: #0C141E !important;
+  position: fixed;
+  top: 28px;
+  width: 70%;
+  left: 15%;
+  opacity: 0.9;
+  font-size: 22px;
+  padding-top: 10px !important;
+  height: 50px;
+  /* border: 2px solid transparent !important; */
+}
+
+#minibuffer-input deck {
+  padding-left: 10px;
+  width: 100%;
+}
+#minibuffer-input label {
+  width: 100%;
+  padding-left: 10px !important;
+  /* background-color: #0C141E; */
+  /* word-break: break-word !important; */
+  /* display: block !important; */
+}
+
+tree.completions .tree-stack {
+  width: 100% !important;
+}
+
+/* #minibuffer-mode-indicator { */
+/* position: fixed; */
+/* right: 0; */
+/* } */
+
+
+/* mode text widgets */
+
+#minibuffer .mode-text-widget {
+  display: none;
+}
+
+#minibuffer[minibuffermode="message"] .mode-text-widget {
+  display: block;
+  border-left: 1px solid threedshadow;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+#minibuffer[minibuffermode="message"] .mode-text-widget[value=""] {
+  display: none;
+}
+
+
+/* minibuffer highlighting */
+
+#minibuffer.highlight {
+  /* background-color: #2B343B !important; */
+  color: #A0AFA8 !important;
+  font-weight: bold !important;
+}
+
+#minibuffer.highlight[minibuffermode="message"] .mode-text-widget {
+  border-left: 1px solid highlighttext;
+}
+
+
+/* Completions display */
+
+tree.completions {
+  margin: 0px !important;
+  /* padding-left: 4px !important; */
+  /* background-color: #0C141E !important; */
+  color: #A0AFA8 !important;
+  -moz-appearance: none !important;
+  border: 0px none !important;
+  border-top: 0px solid -moz-Dialog !important;
+  font-size: 22px;
+  /* height: 150px; */
+  /* -moz-border-top-colors: -moz-initial !important; */
+
+  position: fixed;
+  top: 51px;
+  width: 70%;
+  left: 15%;
+  height: 10px;
+  /* height: 500px !important; */
+  /* opacity: 0.85; */
+}
+
+tree.completions treechildren {
+  /* background-color: green; */
+  border: none !important;
+  width: 100% !important;
+  /* width: 1000px; */
+  position: relative;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+tree.completions treecols {
+  width: 100%;
+  /* position: relative; */
+}
+
+tree.completions treecol {
+  -moz-binding: none !important;
+  /* width: 80%; */
+}
+
+tree.completions treechildren::-moz-tree-row {
+  height: 57px !important;
+  border: none;
+  /* background-color: #0C141E !important; */
+  background-color: rgba(12, 20, 30, 0.85) !important;
+  color: #A0AFA8 !important;
+}
+
+tree.completions treechildren::-moz-tree-row(current) {
+  /* background-color: #2B343B !important; */
+  background-color: rgba(43, 52, 59, 0.85) !important;
+}
+
+tree.completions treechildren::-moz-tree-cell-text {
+  padding-left: 10px;
+}
+
+tree.completions treechildren::-moz-tree-cell-text(completion-description) {
+  font-weight: normal;
+  font-size: 18px;
+  color: #8A8A8A !important;
+}
+
+tree.completions treechildren::-moz-tree-cell-text(current) {
+  color: #00FFFF !important;
+}
+tree.completions treechildren::-moz-tree-cell-text(current, completion-description) {
+  color: #00EEEE !important;
+}
+
+
+#minibuffer[followmode="true"] #minibuffer-input {
+  left: 75%;
+  width: 60%;
+}
+
+tree.completions[followmode="true"] {
+  left: 75%;
+  width: 60%;
+  /* font-size: 18px; */
+}
+
+/* tree.completions[followmode="true"] treechildren::-moz-tree-row { */
+/* height: 46px !important; */
+/* } */
