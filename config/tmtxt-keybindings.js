@@ -14,6 +14,7 @@ define_key(default_global_keymap, "O", "find-url-new-buffer");
 undefine_key(content_buffer_normal_keymap, "t");
 undefine_key(default_global_keymap, "t");
 define_key(default_global_keymap, "t", "find-url-new-buffer");
+define_key(default_global_keymap, "C-x C-d", "find-alternate-url");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
