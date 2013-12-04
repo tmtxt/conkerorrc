@@ -3,7 +3,7 @@
 #minibuffer {
   border-top: 0px solid #99B1F3;
   font-family: DejaVu Sans Mono, Menlo;
-  font-size: 14px;
+  font-size: 12px;
   background-color: #FFFFFF;
   color: #000000 !important;
 
@@ -16,7 +16,7 @@
 
 #minibuffer-prompt {
   font-weight: bold;
-  color: cyan;
+  color: black;
   position: fixed !important;
   top: 100px;
   left: 15%;
