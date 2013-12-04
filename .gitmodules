@@ -4,3 +4,6 @@
 [submodule "modules/cefm"]
 	path = modules/cefm
 	url = git@github.com:tmtxt/conkeror-extended-facebook-mode.git
+[submodule "modules/csbm"]
+	path = modules/csbm
+	url = git@github.com:tmtxt/conkeror-simple-bookmark-manager.git
