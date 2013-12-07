@@ -5,7 +5,7 @@ user_pref("signon.prefillForms", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.rememberSignons", true);
 
-//Enable Password Manager
+// Enable Password Manager
 Components.classes["@mozilla.org/login-manager;1"]
     .getService(Components.interfaces.nsILoginManager);
 

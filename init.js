@@ -39,6 +39,9 @@ require("tmtxt-download.js");
 require("tmtxt-sites.js");
 require("tmtxt-form.js");
 require("tmtxt-facebook.js");
+require("tmtxt-env.js");
+require("tmtxt-extensions.js");
+require("tmtxt-hinting.js");
 
 // Auto load the auto-save session when conkeror starts
 session_auto_save_auto_load = true;
@@ -59,36 +62,6 @@ url_remoting_fn = load_url_in_new_buffer;
 // Load clicked link in background
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 
-// What's this?
-function repl_context() {
-    let ctx = {};
-    ctx.__proto__ = conkeror;
-    ctx.conkeror = conkeror;
-    ctx.window = conkeror.get_recent_conkeror_window();
-    ctx.buffer = ctx.window.buffers.current;
-    ctx.document = ctx.buffer.document;
-    return ctx;
-}
 
-// Allow installing extension from any source
-session_pref("xpinstall.whitelist.required", false);
 
-// viewmarks extension, to manage bookmarks
-// requirement: viewmarks extension https://addons.mozilla.org/en-US/firefox/addon/viewmarks/
-interactive("viewmarks",
-    "Open ViewMarks window.",
-    function (I) {
-        make_chrome_window('chrome://viewmarks/content/viewmark.xul');
-    });
 
-// sqlite manager extension
-// requirements: sqlite manager https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/
-interactive("sqlite-manager",
-    "Open SQLite Manager window.",
-    function (I) {
-        make_chrome_window('chrome://SQLiteManager/content/sqlitemanager.xul');
-    });
-
-/// auto-exit hinting
-hints_auto_exit_delay = 1;
-hints_ambiguous_auto_exit_delay = 500;
