@@ -69,4 +69,56 @@ interactive("colors-toggle", "toggle between document and forced colors",
             });
 define_key(default_global_keymap, "A-n", "colors-toggle");
 
+// auto hide show tab bar
+function hide_tab(){
+  let (sheet = get_home_directory()) {
+    sheet.append(".conkerorrc");
+    sheet.append("no-tab.css");
+    register_user_stylesheet(make_uri(sheet));
+  };
+}
+
+
+function show_tab(){
+  let (sheet = get_home_directory()) {
+	sheet.append(".conkerorrc");
+	sheet.append("no-tab.css");
+	unregister_user_stylesheet(make_uri(sheet));
+  };
+}
+
+interactive("show-tab", "Show tab bar", function(I){
+  show_tab();
+  hide_tab_delay();
+});
+
+var tmtxt_last_timer = null;
+
+function hide_tab_delay(){
+  // we need an nsITimerCallback compatible...
+  // ... interface for the callbacks.
+  var event = {
+	notify: function(timer) {
+      hide_tab();
+	  tmtxt_last_timer = null;
+	}
+  };
+
+  if(tmtxt_last_timer != null){
+	tmtxt_last_timer.cancel();
+  }
+  
+  // Now it is time to create the timer...  
+  tmtxt_last_timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+  
+  // ... and to initialize it, we want to call event.notify() ...
+  // ... one time after exactly ten seconds. 
+  tmtxt_last_timer.initWithCallback(event, 3000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+}
+
+show_tab();
+hide_tab_delay();
+
+define_key(default_global_keymap, "C-R", "show-tab");
+
 provide("tmtxt-appearance");

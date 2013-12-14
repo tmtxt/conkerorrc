@@ -1,0 +1,7 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#tab2-bar {
+  -moz-appearance: textfield;
+  border-bottom: 1px solid threedshadow;
+  display:none;
+}

@@ -1,8 +1,20 @@
 //// Changing buffer
-define_key(default_global_keymap, "A-z", "buffer-previous");
-define_key(default_global_keymap, "C-j", "buffer-previous");
-define_key(default_global_keymap, "A-x", "buffer-next");
-define_key(default_global_keymap, "C-l", "buffer-next");
+function next_buffer(I){
+  show_tab();
+  buffer_next(I.window, I.p);
+  hide_tab_delay();
+}
+
+function previous_buffer(I){
+  show_tab();
+  buffer_next(I.window, -I.p);
+  hide_tab_delay();
+}
+
+define_key(default_global_keymap, "A-z", previous_buffer);
+define_key(default_global_keymap, "C-j", previous_buffer);
+define_key(default_global_keymap, "A-x", next_buffer);
+define_key(default_global_keymap, "C-l", next_buffer);
 
 // follow new buffer background
 define_key(content_buffer_normal_keymap, "A-f", "follow-new-buffer-background");
