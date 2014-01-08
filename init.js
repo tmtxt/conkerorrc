@@ -17,7 +17,6 @@ function tmtxt_add_path(dir) {
 
 // Some useful modules
 require("daemon.js");
-require("session.js");
 require("dom-inspector.js");
 require("page-modes/gmail.js");
 require("global-overlay-keymap");
@@ -43,9 +42,7 @@ require("tmtxt-facebook.js");
 require("tmtxt-env.js");
 require("tmtxt-extensions.js");
 require("tmtxt-hinting.js");
-
-// Auto load the auto-save session when conkeror starts
-session_auto_save_auto_load = true;
+require("tmtxt-session.js");
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
