@@ -4,13 +4,13 @@ theme_unload("default");
 theme_load("tmtxt");
 
 function tmtxt_reload_theme () {
-    theme_unload("tmtxt");
-    theme_load("tmtxt");
+  theme_unload("tmtxt");
+  theme_load("tmtxt");
 }
 interactive("tmtxt-theme", "Load my personal theme", tmtxt_reload_theme);
 function test_theme_reload_theme () {
-    theme_unload("test-theme");
-    theme_load("test-theme");
+  theme_unload("test-theme");
+  theme_load("test-theme");
 }
 interactive("test-theme", "Load my personal theme", test_theme_reload_theme);
 
@@ -46,36 +46,39 @@ let(st_on = false) {
 //colors-toggle
 interactive("colors-toggle", "toggle between document and forced colors",
             function (I) {
-                var p = "browser.display.use_document_colors";
-                if (get_pref(p)) {
-                    session_pref("browser.active_color", "yellow");
-                    session_pref("browser.anchor_color", "#4986dd");
-                    session_pref("browser.display.background_color", "#0C141E");
-                    session_pref("browser.display.foreground_color", "#A0AFA8");
-                    session_pref("browser.display.focus_background_color", "green"); // ?
-                    session_pref("browser.display.focus_text_color", "red"); // ?
-                    session_pref("browser.visited_color", "#805DBB");
-                    session_pref(p, false);
-                } else {
-                    session_pref("browser.active_color", "#EE0000");
-                    session_pref("browser.anchor_color", "#0000EE");
-                    session_pref("browser.display.background_color", "#FFFFFF");
-                    session_pref("browser.display.foreground_color", "#000000");
-                    session_pref("browser.display.focus_background_color", "#117722");
-                    session_pref("browser.display.focus_text_color", "#FFFFFF");
-                    session_pref("browser.visited_color", "#551A8B");
-                    session_pref(p, true);
-                }
+              var p = "browser.display.use_document_colors";
+              if (get_pref(p)) {
+                session_pref("browser.active_color", "yellow");
+                session_pref("browser.anchor_color", "#4986dd");
+                session_pref("browser.display.background_color", "#0C141E");
+                session_pref("browser.display.foreground_color", "#A0AFA8");
+                session_pref("browser.display.focus_background_color", "green"); // ?
+                session_pref("browser.display.focus_text_color", "red"); // ?
+                session_pref("browser.visited_color", "#805DBB");
+                session_pref(p, false);
+              } else {
+                session_pref("browser.active_color", "#EE0000");
+                session_pref("browser.anchor_color", "#0000EE");
+                session_pref("browser.display.background_color", "#FFFFFF");
+                session_pref("browser.display.foreground_color", "#000000");
+                session_pref("browser.display.focus_background_color", "#117722");
+                session_pref("browser.display.focus_text_color", "#FFFFFF");
+                session_pref("browser.visited_color", "#551A8B");
+                session_pref(p, true);
+              }
             });
 define_key(default_global_keymap, "A-n", "colors-toggle");
 
 // auto hide show tab bar
+var allow_hide_tab = true;
 function hide_tab(){
-  let (sheet = get_home_directory()) {
-    sheet.append(".conkerorrc");
-    sheet.append("no-tab.css");
-    register_user_stylesheet(make_uri(sheet));
-  };
+  if(allow_hide_tab){
+	let (sheet = get_home_directory()) {
+      sheet.append(".conkerorrc");
+      sheet.append("no-tab.css");
+      register_user_stylesheet(make_uri(sheet));
+	};
+  }
 }
 
 
@@ -87,7 +90,7 @@ function show_tab(){
   };
 }
 
-interactive("show-tab", "Show tab bar", function(I){
+interactive("show-tab-temporarily", "Show tab bar for a short time", function(I){
   show_tab();
   hide_tab_delay();
 });
@@ -120,5 +123,15 @@ show_tab();
 hide_tab_delay();
 
 define_key(default_global_keymap, "C-R", "show-tab");
+
+interactive("show-tab-permanantly", "Show tab bar permanantly", function(I){
+  show_tab();
+  allow_hide_tab = false;
+});
+
+interactive("hide-tab", "Hide tab bar", function(I){
+  allow_hide_tab = true;
+  hide_tab();
+});
 
 provide("tmtxt-appearance");
