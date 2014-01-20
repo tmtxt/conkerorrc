@@ -54,6 +54,8 @@ define_key(content_buffer_normal_keymap, "M-k", "cmd_scrollLineDown");
 define_key(text_keymap, "M-k", "forward-line");
 define_key(content_buffer_normal_keymap, "M-I", "cmd_scrollPageUp");
 define_key(content_buffer_normal_keymap, "M-K", "cmd_scrollPageDown");
+define_key_alias("M-L", "C-e");
+define_key_alias("M-J", "C-a");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
