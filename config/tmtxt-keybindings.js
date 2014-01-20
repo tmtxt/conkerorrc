@@ -1,4 +1,4 @@
-//// Changing buffer
+//// Changing buffer, show tab and then hide
 function next_buffer(I){
   show_tab();
   buffer_next(I.window, I.p);
@@ -27,6 +27,33 @@ define_key(default_global_keymap, "O", "find-url-new-buffer");
 // undefine_key(default_global_keymap, "t");
 // define_key(default_global_keymap, "t", "find-url-new-buffer");
 define_key(default_global_keymap, "C-x C-d", "find-alternate-url");
+
+// ergonomic layout for navigation
+// for MacOS, the key binding with M- got problem, use KeyRemap4Macbook to fix
+
+// undefine key first
+undefine_key(content_buffer_normal_keymap, "C-f");
+undefine_key(text_keymap, "C-f");
+undefine_key(content_buffer_normal_keymap, "C-b");
+undefine_key(text_keymap, "C-b");
+undefine_key(content_buffer_normal_keymap, "C-p");
+undefine_key(text_keymap, "C-p");
+undefine_key(content_buffer_normal_keymap, "C-n");
+undefine_key(text_keymap, "C-n");
+undefine_key(content_buffer_normal_keymap, "M-v");
+undefine_key(content_buffer_normal_keymap, "C-v");
+
+// then rebind them to other keystrokes
+define_key(content_buffer_normal_keymap, "M-l", "cmd_scrollRight");
+define_key(text_keymap, "M-l", "forward-char");
+define_key(content_buffer_normal_keymap, "M-j", "cmd_scrollLeft");
+define_key(text_keymap, "M-j", "backward-char");
+define_key(content_buffer_normal_keymap, "M-i", "cmd_scrollLineUp");
+define_key(text_keymap, "M-i", "backward-line");
+define_key(content_buffer_normal_keymap, "M-k", "cmd_scrollLineDown");
+define_key(text_keymap, "M-k", "forward-line");
+define_key(content_buffer_normal_keymap, "M-I", "cmd_scrollPageUp");
+define_key(content_buffer_normal_keymap, "M-K", "cmd_scrollPageDown");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
