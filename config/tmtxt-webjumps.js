@@ -74,4 +74,4 @@ interactive("tmtxt-open-aria2-webui", "Open aria2 webui", "follow-new-buffer",
             $browser_object = "file:///Volumes/tmtxt/webui-aria2/index.html");
 define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
 
-provide("tmtxt-webjumps")
+provide("tmtxt-webjumps");
