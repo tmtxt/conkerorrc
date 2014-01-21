@@ -91,4 +91,17 @@ define_key(default_global_keymap, "C-A-x", function (I) {
 define_key_alias("C-J", "C-A-z");//switch to first buffer
 define_key_alias("C-L", "C-A-x");//switch to last buffer
 
+//// Changing buffer, show tab and then hide
+function next_buffer(I){
+  show_tab();
+  buffer_next(I.window, I.p);
+  hide_tab_delay();
+}
+
+function previous_buffer(I){
+  show_tab();
+  buffer_next(I.window, -I.p);
+  hide_tab_delay();
+}
+
 provide("tmtxt-buffer-switcher");
