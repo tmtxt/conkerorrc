@@ -97,24 +97,33 @@ tmtxt_define_keys(default_global_keymap,
 tmtxt_define_keys(content_buffer_normal_keymap,
 				  "A-f",		"follow-new-buffer-background",
 				  "F",			"follow-new-buffer-background",
+				  "* q",		"browser-object-tinyurl",
+				  "C-A-v",		"paste-url-new-buffer",
+
+				  // ergoemacs style
 				  "M-l",		"cmd_scrollRight",
 				  "M-j",		"cmd_scrollLeft",
 				  "M-i",		"cmd_scrollLineUp",
 				  "M-k",		"cmd_scrollLineDown",
 				  "M-I",		"cmd_scrollPageUp",
 				  "M-K",		"cmd_scrollPageDown",
-				  "C-A-v",		"paste-url-new-buffer",
+				  
+
+				  // vim style navigation
 				  "k",			"cmd_scrollLineUp",
 				  "j",			"cmd_scrollLineDown",
 				  "g g",		"scroll-top-left",
 				  "G",			"cmd_scrollBottom",
 				  "L",			"back",
-				  "H",			"forward",
-				  "* q",		"browser-object-tinyurl"
+				  "H",			"forward"
 				 );
 tmtxt_define_keys(text_keymap,
 				  "M-l",		"forward-char",
 				  "M-j",		"backward-char",
+				  "M-u",		"forward-word",
+				  "M-o",		"backward-word"
+				 );
+tmtxt_define_keys(content_buffer_textarea_keymap,
 				  "M-i",		"backward-line",
 				  "M-k",		"forward-line"
 				 );
