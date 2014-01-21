@@ -1,5 +1,6 @@
 // setting for interacting with buffers
 
+////////////////////////////////////////////////////////////////////////////////
 //this is for replacing the built in kill-this-buffer command
 //the command tmtxt-close-and-save-current-buffer will save the URL of the
 //current buffer beforing closing it
@@ -32,26 +33,19 @@ interactive("tmtxt-open-closed-buffer",
 			  }
 			  hide_tab_delay();
 			});
-//// kill current buffer
-define_key(default_global_keymap, "w", "tmtxt-close-and-save-current-buffer");
-define_key(default_global_keymap, "A-w", "tmtxt-close-and-save-current-buffer");
-define_key(default_global_keymap, "A-k", "tmtxt-close-and-save-current-buffer");
-//reopen last closed buffer
-define_key(default_global_keymap, "A-W", "tmtxt-open-closed-buffer");
-define_key(default_global_keymap, "A-T", "tmtxt-open-closed-buffer");
 
-//// Stop loading all buffer (key A-h)
-define_key(default_global_keymap, "A-h", function (I) {
-  for (var i = 0; i < I.window.buffers.count; i++) {
-    stop_loading(I.window.buffers.get_buffer(i));
-  }
-});
-
-//// reload all buffer (key A-r)
-define_key(default_global_keymap, "A-r", function (I) {
-  for (var i = 0; i < I.window.buffers.count; i++) {
-    reload(I.window.buffers.get_buffer(i));
-  }
-});
+////////////////////////////////////////////////////////////////////////////////
+interactive("stop-loading-all-buffers", "Stop loading all buffers",
+			function (I) {
+			  for (var i = 0; i < I.window.buffers.count; i++) {
+				stop_loading(I.window.buffers.get_buffer(i));
+			  }
+			});
+interactive("reload-all-buffers", "Reload al buffers",
+			function (I) {
+			  for (var i = 0; i < I.window.buffers.count; i++) {
+				reload(I.window.buffers.get_buffer(i));
+			  }
+			});
 
 provide("tmtxt-buffer-interaction");

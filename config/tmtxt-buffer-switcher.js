@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////////////////
 // Replacement of built-in buffer switcher
 minibuffer.prototype.read_recent_buffer = function () {
   var window = this.window;
@@ -42,8 +43,8 @@ interactive("switch-to-recent-buffer",
                               I.window.buffers.buffer_history[1] :
                               I.buffer))));
             });
-define_key(default_global_keymap, "C-tab", "switch-to-recent-buffer");
 
+////////////////////////////////////////////////////////////////////////////////
 ////Switch to last buffer
 interactive("switch-to-last-buffer", "Switch to the last visited buffer",
             function (I) {
@@ -54,8 +55,8 @@ interactive("switch-to-last-buffer", "Switch to the last visited buffer",
                                I.window.buffers.buffer_history[1]);
 			  hide_tab_delay();
             });
-define_key(default_global_keymap, "C-S-tab", "switch-to-last-buffer");
 
+////////////////////////////////////////////////////////////////////////////////
 //// Use numeric key to switch buffers (1-9)
 function define_switch_buffer_key (key, buf_num) {
   
@@ -72,25 +73,14 @@ for (let i = 0; i < 9; ++i) {
 }
 define_switch_buffer_key("C-A-z", 0); // first buffer
 
-// Switch to last buffer
-define_key(default_global_keymap, "0", function (I) {
+function switch_to_last_tab(I) {
   show_tab();
   switch_to_buffer(I.window,
                    I.window.buffers.get_buffer(I.window.buffers.count - 1));
   hide_tab_delay();
-});
+}
 
-define_key(default_global_keymap, "C-A-x", function (I) {
-  show_tab();
-  switch_to_buffer(I.window,
-                   I.window.buffers.get_buffer(I.window.buffers.count - 1));
-  hide_tab_delay();
-});
-
-// aliases
-define_key_alias("C-J", "C-A-z");//switch to first buffer
-define_key_alias("C-L", "C-A-x");//switch to last buffer
-
+////////////////////////////////////////////////////////////////////////////////
 //// Changing buffer, show tab and then hide
 function next_buffer(I){
   show_tab();

@@ -79,7 +79,20 @@ tmtxt_define_keys(default_global_keymap,
 				  "C-l",		next_buffer,
 				  "O",			"find-url-new-buffer",
 				  "C-x C-d",	"find-alternate-url",
-				  "A-q",		"quit"
+				  "A-q",		"quit",
+				  "C-tab",		"switch-to-recent-buffer",
+				  "C-S-tab",	"switch-to-last-buffer",
+				  "C-A-x",		switch_to_last_tab,
+				  "0",			switch_to_last_tab,
+				  "A-n",		"colors-toggle",
+				  "C-R",		"show-tab",
+				  "w",			"tmtxt-close-and-save-current-buffer",
+				  "A-w",		"tmtxt-close-and-save-current-buffer",
+				  "A-k",		"tmtxt-close-and-save-current-buffer",
+				  "A-W",		"tmtxt-open-closed-buffer",
+				  "A-T",		"tmtxt-open-closed-buffer",
+				  "A-h",		"stop-loading-all-buffers",
+				  "A-r",		"reload-all-buffers"
 				 );
 tmtxt_define_keys(content_buffer_normal_keymap,
 				  "A-f",		"follow-new-buffer-background",
@@ -96,13 +109,27 @@ tmtxt_define_keys(content_buffer_normal_keymap,
 				  "g g",		"scroll-top-left",
 				  "G",			"cmd_scrollBottom",
 				  "L",			"back",
-				  "H",			"forward"
+				  "H",			"forward",
+				  "* q",		"browser-object-tinyurl"
 				 );
 tmtxt_define_keys(text_keymap,
 				  "M-l",		"forward-char",
 				  "M-j",		"backward-char",
 				  "M-i",		"backward-line",
 				  "M-k",		"forward-line"
+				 );
+tmtxt_define_keys(facebook_keymap,
+				  "C-M-o",		"cefm-open-current-story-new-buffer",
+				  "C-O",		"cefm-open-current-story-new-buffer-background",
+				  "A-o",		"cefm-open-current-story-new-buffer-background",
+				  "C-C",		"cefm-cycle-conversations",
+				  "C-I",		"cefm-scroll-up-current-conversation",
+				  "C-K",		"cefm-scroll-down-current-conversation",
+				  "C-M-E",		"cefm-expand-content",
+				  "1",			"cefm-open-home",
+				  "3",			"cefm-open-friend-request",
+				  "4",			"cefm-open-messages",
+				  "5",			"cefm-open-notification"
 				 );
 
 // and then some aliases
@@ -111,7 +138,9 @@ tmtxt_define_keys_aliases("C-o",			"escape",
 						  "A-c",			"M-w",
 						  "C-m",			"return",
 						  "M-L",			"C-e",
-						  "M-J",			"C-a");
+						  "M-J",			"C-a",
+						  "C-J",			"C-A-z",
+						  "C-L",			"C-A-x");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");

@@ -1,25 +1,22 @@
+////////////////////////////////////////////////////////////////////////////////
 // Personal theme
 theme_load_paths.unshift("~/.conkerorrc/themes/");
 theme_unload("default");
 theme_load("tmtxt");
-
 function tmtxt_reload_theme () {
   theme_unload("tmtxt");
   theme_load("tmtxt");
 }
 interactive("tmtxt-theme", "Load my personal theme", tmtxt_reload_theme);
-function test_theme_reload_theme () {
-  theme_unload("test-theme");
-  theme_load("test-theme");
-}
-interactive("test-theme", "Load my personal theme", test_theme_reload_theme);
 
-// tab bar
+////////////////////////////////////////////////////////////////////////////////
+// Tab bar
 require("favicon.js");
 require("new-tabs.js");
 tab_bar_show_icon = true;
 tab_bar_show_index = true;
 
+////////////////////////////////////////////////////////////////////////////////
 // Stylesheet toggling
 // From technomancy
 interactive("toggle-stylesheets",
@@ -43,7 +40,8 @@ let(st_on = false) {
   };
 };
 
-//colors-toggle
+////////////////////////////////////////////////////////////////////////////////
+// Colors-toggle
 interactive("colors-toggle", "toggle between document and forced colors",
             function (I) {
               var p = "browser.display.use_document_colors";
@@ -67,10 +65,13 @@ interactive("colors-toggle", "toggle between document and forced colors",
                 session_pref(p, true);
               }
             });
-define_key(default_global_keymap, "A-n", "colors-toggle");
 
-// auto hide show tab bar
+////////////////////////////////////////////////////////////////////////////////
+// Auto hide show tab bar
 var allow_hide_tab = true;
+var tmtxt_last_timer = null;
+
+// Hide tab bar immediately
 function hide_tab(){
   if(allow_hide_tab){
 	let (sheet = get_home_directory()) {
@@ -81,7 +82,7 @@ function hide_tab(){
   }
 }
 
-
+// Show tab bar
 function show_tab(){
   let (sheet = get_home_directory()) {
 	sheet.append(".conkerorrc");
@@ -90,13 +91,7 @@ function show_tab(){
   };
 }
 
-interactive("show-tab-temporarily", "Show tab bar for a short time", function(I){
-  show_tab();
-  hide_tab_delay();
-});
-
-var tmtxt_last_timer = null;
-
+// Hide tab bar with delay
 function hide_tab_delay(){
   // we need an nsITimerCallback compatible...
   // ... interface for the callbacks.
@@ -119,19 +114,22 @@ function hide_tab_delay(){
   tmtxt_last_timer.initWithCallback(event, 3000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
 }
 
-show_tab();
-hide_tab_delay();
-
-define_key(default_global_keymap, "C-R", "show-tab");
-
+// Interactive commands
+interactive("show-tab-temporarily", "Show tab bar for a short time", function(I){
+  show_tab();
+  hide_tab_delay();
+});
 interactive("show-tab-permanantly", "Show tab bar permanantly", function(I){
   show_tab();
   allow_hide_tab = false;
 });
-
 interactive("hide-tab", "Hide tab bar", function(I){
   allow_hide_tab = true;
   hide_tab();
 });
+
+// Now activate the feature
+show_tab();
+hide_tab_delay();
 
 provide("tmtxt-appearance");

@@ -16,6 +16,5 @@ define_browser_object_class(
             yield co_return(content.responseText);
         } catch (e) { }
     });
-define_key(content_buffer_normal_keymap, "* q", "browser-object-tinyurl");
 
 provide("tmtxt-sites");
