@@ -1,3 +1,5 @@
+// NOTE: This file should be loaded finally, after all other files
+
 // define keys for specific keymap
 // arguments: keymap, keystroke1, command1, keystroke2, command2,...
 function tmtxt_define_keys(){
@@ -70,6 +72,7 @@ function tmtxt_undefine_keys(){
 // undefine some built-in keys
 tmtxt_undefine_keys(content_buffer_normal_keymap, "F", "C-f", "C-b", "C-p", "C-n", "M-v", "C-v", "g", "G");
 tmtxt_undefine_keys(text_keymap, "C-f", "C-b", "C-p", "C-n");
+tmtxt_undefine_keys(default_global_keymap, "M-N");
 
 // redefine some keys
 tmtxt_define_keys(default_global_keymap,
@@ -99,6 +102,7 @@ tmtxt_define_keys(content_buffer_normal_keymap,
 				  "F",			"follow-new-buffer-background",
 				  "* q",		"browser-object-tinyurl",
 				  "C-A-v",		"paste-url-new-buffer",
+				  "C-D",		"caret-mode",
 
 				  // ergoemacs style
 				  "M-l",		"cmd_scrollRight",
@@ -107,7 +111,8 @@ tmtxt_define_keys(content_buffer_normal_keymap,
 				  "M-k",		"cmd_scrollLineDown",
 				  "M-I",		"cmd_scrollPageUp",
 				  "M-K",		"cmd_scrollPageDown",
-				  
+				  "M-n",		"scroll-top-left",
+				  "M-N",		"cmd_scrollBottom",
 
 				  // vim style navigation
 				  "k",			"cmd_scrollLineUp",
@@ -115,7 +120,11 @@ tmtxt_define_keys(content_buffer_normal_keymap,
 				  "g g",		"scroll-top-left",
 				  "G",			"cmd_scrollBottom",
 				  "L",			"back",
-				  "H",			"forward"
+				  "H",			"forward",
+
+				  // mac os specific
+				  "A-up",		"scroll-top-left",
+				  "A-down",		"cmd_scrollBottom"
 				 );
 tmtxt_define_keys(text_keymap,
 				  "M-l",		"forward-char",
@@ -125,7 +134,9 @@ tmtxt_define_keys(text_keymap,
 				 );
 tmtxt_define_keys(content_buffer_textarea_keymap,
 				  "M-i",		"backward-line",
-				  "M-k",		"forward-line"
+				  "M-k",		"forward-line",
+				  "A-up",		"beginning-of-first-line",
+				  "A-down",		"end-of-last-line"
 				 );
 tmtxt_define_keys(facebook_keymap,
 				  "C-M-o",		"cefm-open-current-story-new-buffer",
@@ -149,7 +160,8 @@ tmtxt_define_keys_aliases("C-o",			"escape",
 						  "M-L",			"C-e",
 						  "M-J",			"C-a",
 						  "C-J",			"C-A-z",
-						  "C-L",			"C-A-x");
+						  "C-L",			"C-A-x",
+						  "C-i",			"tab");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");

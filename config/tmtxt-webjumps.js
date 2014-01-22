@@ -54,7 +54,7 @@ define_key(content_buffer_normal_keymap, "C-2", "tmtxt-open-myblog-new");
 interactive("tmtxt-open-myblog-local-new", "Open My Blog Localhost New Buffer",
 			"follow-new-buffer",
             $browser_object = "http://localhost:4000/");
-define_key(content_buffer_normal_keymap, "C-@", "tmtxt-open-myblog-local-new");
+define_key(content_buffer_normal_keymap, "C-8", "tmtxt-open-myblog-local-new");
 interactive("tmtxt-open-hn-new", "Open HN New Buffer", "follow-new-buffer",
             $browser_object = "http://news.ycombinator.com/");
 define_key(content_buffer_normal_keymap, "C-3", "tmtxt-open-hn-new");
