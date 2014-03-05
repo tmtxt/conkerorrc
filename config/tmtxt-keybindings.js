@@ -149,7 +149,9 @@ tmtxt_define_keys(facebook_keymap,
 				  "1",			"cefm-open-home",
 				  "3",			"cefm-open-friend-request",
 				  "4",			"cefm-open-messages",
-				  "5",			"cefm-open-notification"
+				  "5",			"cefm-open-notification",
+				  "C-A-n",		"cefm-follow-notifications-new-buffer-background",
+				  "A-return",	"cefm-follow-messages"
 				 );
 
 // and then some aliases
@@ -161,7 +163,9 @@ tmtxt_define_keys_aliases("C-o",			"escape",
 						  "M-J",			"C-a",
 						  "C-J",			"C-A-z",
 						  "C-L",			"C-A-x",
-						  "C-i",			"tab");
+						  "C-i",			"tab",
+						  "M-d",			"delete",
+						  "M-f",			"back_space");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");

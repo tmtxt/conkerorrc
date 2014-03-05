@@ -31,7 +31,6 @@ require("tmtxt-webjumps.js");
 require("tmtxt-buffer-switcher.js");
 require("tmtxt-buffer-interaction.js");
 require("tmtxt-modeline.js");
-require("tmtxt-keybindings.js");
 require("tmtxt-readability.js");
 require("tmtxt-useragent.js");
 require("tmtxt-minibuffer.js");
@@ -43,6 +42,7 @@ require("tmtxt-env.js");
 require("tmtxt-extensions.js");
 require("tmtxt-hinting.js");
 require("tmtxt-session.js");
+require("tmtxt-keybindings.js");
 
 // caret-mode disable by default
 user_pref('accessibility.browsewithcaret', false);
