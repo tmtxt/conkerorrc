@@ -46,7 +46,7 @@ define_webjump("ggvn", "http://google.com.vn/");
 
 //keyboard shorcut for often-used sites
 interactive("tmtxt-open-facebook-new", "Open Facebook New Buffer", "follow-new-buffer",
-            $browser_object = "http://facebook.com/");
+            $browser_object = "http://www.facebook.com/");
 define_key(content_buffer_normal_keymap, "C-1", "tmtxt-open-facebook-new");
 interactive("tmtxt-open-myblog-new", "Open My Blog New Buffer", "follow-new-buffer",
             $browser_object = "http://truongtx.me/");
@@ -73,5 +73,8 @@ define_key(content_buffer_normal_keymap, "C-7", "tmtxt-open-google-plus-new");
 interactive("tmtxt-open-aria2-webui", "Open aria2 webui", "follow-new-buffer",
             $browser_object = "file:///Volumes/tmtxt/webui-aria2/index.html");
 define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
+interactive("tmtxt-open-localhost-3000", "Open localhost:3000", "follow-new-buffer",
+            $browser_object = "http://localhost:3000");
+define_key(content_buffer_normal_keymap, "C-9", "tmtxt-open-localhost-3000");
 
 provide("tmtxt-webjumps");
