@@ -131,7 +131,8 @@ interactive("hide-tab", "Hide tab bar", function(I){
 });
 
 // Now activate the feature
-show_tab();
-hide_tab_delay();
+allow_hide_tab = false;
+// show_tab();
+// hide_tab_delay();
 
 provide("tmtxt-appearance");
