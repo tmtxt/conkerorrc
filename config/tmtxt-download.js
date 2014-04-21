@@ -33,7 +33,9 @@ function content_handler_add_to_aria2(ctx) {
     }
   };
   req.send(JSON.stringify(data));
-  
+
+  // abort the context since aria2 handles it already
+  source.abort();
 }
 
 // this function is taken from content-handler.js in conkeror source code.
