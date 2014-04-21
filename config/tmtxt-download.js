@@ -94,4 +94,16 @@ function content_handler_prompt (ctx) {
   }
 }
 
+interactive("youtube-download", "Download from youtube",
+            function(I){
+              // get the url of the page
+              var url = I.buffer.current_uri.spec;
+              const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
+                .getService(Components.interfaces.nsIClipboardHelper);
+              // put it to clipboard
+              gClipboardHelper.copyString(url);
+              // run the script
+              shell_command_blind("open /Volumes/tmtxt/bin/youtube-download.sh");
+            });
+
 provide("tmtxt-download");
