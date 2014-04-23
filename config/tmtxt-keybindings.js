@@ -98,34 +98,38 @@ tmtxt_define_keys(default_global_keymap,
 				  "A-r",		"reload-all-buffers"
 				 );
 tmtxt_define_keys(content_buffer_normal_keymap,
-				  "A-f",		"follow-new-buffer-background",
-				  "F",			"follow-new-buffer-background",
-				  "* q",		"browser-object-tinyurl",
-				  "C-A-v",		"paste-url-new-buffer",
-				  "C-D",		"caret-mode",
+                  "A-f",    "follow-new-buffer-background",
+                  "F",      "follow-new-buffer-background",
+                  "* q",    "browser-object-tinyurl",
+                  "C-A-v",    "paste-url-new-buffer",
+                  "C-D",    "caret-mode",
 
-				  // ergoemacs style
-				  "M-l",		"cmd_scrollRight",
-				  "M-j",		"cmd_scrollLeft",
-				  "M-i",		"cmd_scrollLineUp",
-				  "M-k",		"cmd_scrollLineDown",
-				  "M-I",		"cmd_scrollPageUp",
-				  "M-K",		"cmd_scrollPageDown",
-				  "M-n",		"scroll-top-left",
-				  "M-N",		"cmd_scrollBottom",
+                  
+                  // ergoemacs style
+                  "M-l",    "cmd_scrollRight",
+                  "M-j",    "cmd_scrollLeft",
+                  "M-i",    "cmd_scrollLineUp",
+                  "M-k",    "cmd_scrollLineDown",
+                  "M-I",    "cmd_scrollPageUp",
+                  "M-K",    "cmd_scrollPageDown",
+                  "M-n",    "scroll-top-left",
+                  "M-N",    "cmd_scrollBottom",
 
-				  // vim style navigation
-				  "k",			"cmd_scrollLineUp",
-				  "j",			"cmd_scrollLineDown",
-				  "g g",		"scroll-top-left",
-				  "G",			"cmd_scrollBottom",
-				  "L",			"back",
-				  "H",			"forward",
+                  // vim style navigation
+                  "k",      "cmd_scrollLineUp",
+                  "j",      "cmd_scrollLineDown",
+                  "g g",    "scroll-top-left",
+                  "G",      "cmd_scrollBottom",
+                  "L",      "back",
+                  "H",      "forward",
 
-				  // mac os specific
-				  "A-up",		"scroll-top-left",
-				  "A-down",		"cmd_scrollBottom"
-				 );
+                  // mac os specific
+                  "A-up",   "tmtxt-scroll-top",
+                  "A-down",   "tmtxt-scroll-bottom",
+
+                  // exchange point and mark like emacs
+                  "C-x C-x",  "tmtxt-back-to-last-position"
+                 );
 tmtxt_define_keys(text_keymap,
 				  "M-l",		"forward-char",
 				  "M-j",		"backward-char",
