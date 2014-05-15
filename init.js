@@ -60,3 +60,6 @@ url_remoting_fn = load_url_in_new_buffer;
 
 // Load clicked link in background
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
+
+// history expire
+user_pref("browser.history_expire_day", 99999);
