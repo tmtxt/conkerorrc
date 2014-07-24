@@ -76,5 +76,8 @@ define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
 interactive("tmtxt-open-localhost-3000", "Open localhost:3000", "follow-new-buffer",
             $browser_object = "http://localhost:3000");
 define_key(content_buffer_normal_keymap, "C-9", "tmtxt-open-localhost-3000");
+interactive("tmtxt-open-cias", "Open Cogini Cias", "follow-new-buffer",
+            $browser_object = "http://cias.cogini.com/home/index");
+define_key(content_buffer_normal_keymap, "C-0", "tmtxt-open-cias");
 
 provide("tmtxt-webjumps");
