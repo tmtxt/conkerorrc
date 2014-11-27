@@ -7,3 +7,6 @@
 [submodule "modules/csbm"]
 	path = modules/csbm
 	url = git@github.com:tmtxt/conkeror-simple-bookmark-manager.git
+[submodule "modules/ctm"]
+	path = modules/ctm
+	url = git@github.com:tmtxt/conkeror-truongtx-mode.git

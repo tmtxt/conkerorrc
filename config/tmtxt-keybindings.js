@@ -5,30 +5,30 @@
 function tmtxt_define_keys(){
   // check if arguments if larger than 1
   if(arguments.length > 1){
-	var args = Array.prototype.slice.call(arguments);
-	
-	// get the keymap
-	var keymap = args[0];
+	  var args = Array.prototype.slice.call(arguments);
+	  
+	  // get the keymap
+	  var keymap = args[0];
 
-	// remove the first item (keymap)
-	args.splice(0, 1);
+	  // remove the first item (keymap)
+	  args.splice(0, 1);
 
-	// the length
-	var length = 0;
+	  // the length
+	  var length = 0;
 
-	// check the number of elements in arguments
-	if(args.length % 2 == 0){
-	  length = args.length;
-	} else {
-	  length = args.length + 1;
-	  // add one more null item to the array
-	  args[length] = null;
-	}
+	  // check the number of elements in arguments
+	  if(args.length % 2 == 0){
+	    length = args.length;
+	  } else {
+	    length = args.length + 1;
+	    // add one more null item to the array
+	    args[length] = null;
+	  }
 
-	// loop through the arguments
-	for(var i = 0; i < length; i+=2){
-	  define_key(keymap, args[i], args[i+1]);
-	}
+	  // loop through the arguments
+	  for(var i = 0; i < length; i+=2){
+	    define_key(keymap, args[i], args[i+1]);
+	  }
   }
 }
 
@@ -39,15 +39,15 @@ function tmtxt_define_keys_aliases(){
   // check if the number of arguments is even
   var length;
   if(args.length % 2 == 0){
-	length = args.length;
+	  length = args.length;
   } else {
-	length = args.length + 1;
-	args[length] = null;
+	  length = args.length + 1;
+	  args[length] = null;
   }
 
   // loop through the args
   for(var i = 0; i < length; i+=2){
-	define_key_alias(args[i], args[i+1]);
+	  define_key_alias(args[i], args[i+1]);
   }
 }
 
@@ -58,14 +58,14 @@ function tmtxt_undefine_keys(){
 
   // check if the arguments number is bigger than 1
   if(args.length > 1){
-	var keymap = args[0];
+	  var keymap = args[0];
 
-	args.splice(0,1);
+	  args.splice(0,1);
 
-	// loop through the args
-	for(var i = 0; i < args.length; i++){
-	  undefine_key(keymap, args[i]);
-	}
+	  // loop through the args
+	  for(var i = 0; i < args.length; i++){
+	    undefine_key(keymap, args[i]);
+	  }
   }
 }
 
@@ -76,27 +76,30 @@ tmtxt_undefine_keys(default_global_keymap, "M-N");
 
 // redefine some keys
 tmtxt_define_keys(default_global_keymap,
-				  "A-z",		previous_buffer,
-				  "C-j",		previous_buffer,
-				  "A-x",		next_buffer,
-				  "C-l",		next_buffer,
-				  "O",			"find-url-new-buffer",
-				  "C-x C-d",	"find-alternate-url",
-				  "A-q",		"quit",
-				  "C-tab",		"switch-to-recent-buffer",
-				  "C-S-tab",	"switch-to-last-buffer",
-				  "C-A-x",		switch_to_last_tab,
-				  "0",			switch_to_last_tab,
-				  "A-n",		"colors-toggle",
-				  "C-R",		"show-tab-temporarily",
-				  "w",			"tmtxt-close-and-save-current-buffer",
-				  "A-w",		"tmtxt-close-and-save-current-buffer",
-				  "A-k",		"tmtxt-close-and-save-current-buffer",
-				  "A-W",		"tmtxt-open-closed-buffer",
-				  "A-T",		"tmtxt-open-closed-buffer",
-				  "A-h",		"stop-loading-all-buffers",
-				  "A-r",		"reload-all-buffers"
-				 );
+				          "A-z",		previous_buffer,
+				          "C-j",		previous_buffer,
+				          "A-x",		next_buffer,
+				          "C-l",		next_buffer,
+                  "A-l",    next_buffer,
+                  "A-j",    previous_buffer,
+				          "O",			"find-url-new-buffer",
+				          "C-x C-d",	"find-alternate-url",
+				          "A-q",		"quit",
+				          "C-tab",		"switch-to-recent-buffer",
+				          "C-S-tab",	"switch-to-last-buffer",
+				          "C-A-x",		switch_to_last_tab,
+				          "0",			switch_to_last_tab,
+				          "A-n",		"colors-toggle",
+				          "C-R",		"show-tab-temporarily",
+				          "w",			"tmtxt-close-and-save-current-buffer",
+				          "A-w",		"tmtxt-close-and-save-current-buffer",
+				          "A-k",		"tmtxt-close-and-save-current-buffer",
+				          "A-C",		"tmtxt-close-and-save-current-buffer",
+				          "A-W",		"tmtxt-open-closed-buffer",
+				          "A-T",		"tmtxt-open-closed-buffer",
+				          "A-h",		"stop-loading-all-buffers",
+				          "A-r",		"reload-all-buffers"
+				         );
 tmtxt_define_keys(content_buffer_normal_keymap,
                   "A-f",    "follow-new-buffer-background",
                   "F",      "follow-new-buffer-background",
@@ -126,50 +129,58 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   // mac os specific
                   "A-up",   "tmtxt-scroll-top",
                   "A-down",   "tmtxt-scroll-bottom",
+                  
 
                   // exchange point and mark like emacs
                   "C-x C-x",  "tmtxt-back-to-last-position"
                  );
 tmtxt_define_keys(text_keymap,
-				  "M-l",		"forward-char",
-				  "M-j",		"backward-char",
-				  "M-u",		"forward-word",
-				  "M-o",		"backward-word"
-				 );
+				          "M-l",		"forward-char",
+				          "M-j",		"backward-char",
+				          "M-u",		"forward-word",
+				          "M-o",		"backward-word",
+                  "S-delete", "cmd_deleteWordForward"
+				         );
 tmtxt_define_keys(content_buffer_textarea_keymap,
-				  "M-i",		"backward-line",
-				  "M-k",		"forward-line",
-				  "A-up",		"beginning-of-first-line",
-				  "A-down",		"end-of-last-line"
-				 );
+				          "M-i",		"backward-line",
+				          "M-k",		"forward-line",
+				          "A-up",		"beginning-of-first-line",
+				          "A-down",		"end-of-last-line",
+                  "S-delete", "cmd_deleteWordForward"
+				         );
 tmtxt_define_keys(facebook_keymap,
-				  "C-M-o",		"cefm-open-current-story-new-buffer",
-				  "C-O",		"cefm-open-current-story-new-buffer-background",
-				  "A-o",		"cefm-open-current-story-new-buffer-background",
-				  "C-C",		"cefm-cycle-conversations",
-				  "C-I",		"cefm-scroll-up-current-conversation",
-				  "C-K",		"cefm-scroll-down-current-conversation",
-				  "C-M-E",		"cefm-expand-content",
-				  "1",			"cefm-open-home",
-				  "3",			"cefm-open-friend-request",
-				  "4",			"cefm-open-messages",
-				  "5",			"cefm-open-notification",
-				  "C-A-n",		"cefm-follow-notifications-new-buffer-background",
-				  "A-return",	"cefm-follow-messages"
-				 );
+				          "C-M-o",		"cefm-open-current-story-new-buffer",
+				          "C-O",		"cefm-open-current-story-new-buffer-background",
+				          "A-o",		"cefm-open-current-story-new-buffer-background",
+				          "C-C",		"cefm-cycle-conversations",
+                  "C-S",		"cefm-cycle-conversations",
+				          "C-I",		"cefm-scroll-up-current-conversation",
+				          "C-K",		"cefm-scroll-down-current-conversation",
+				          "C-M-E",		"cefm-expand-content",
+				          "1",			"cefm-open-home",
+				          "3",			"cefm-open-friend-request",
+				          "4",			"cefm-open-messages",
+				          "5",			"cefm-open-notification",
+				          "C-A-n",		"cefm-follow-notifications-new-buffer-background",
+                  "C-T", "cefm-attach-image",
+                  "A-return",	"cefm-follow-messages"
+				         );
 
 // and then some aliases
 tmtxt_define_keys_aliases("C-o",			"escape",
-						  "A-v",			"C-y",
-						  "A-c",			"M-w",
-						  "C-m",			"return",
-						  "M-L",			"C-e",
-						  "M-J",			"C-a",
-						  "C-J",			"C-A-z",
-						  "C-L",			"C-A-x",
-						  "C-i",			"tab",
-						  "M-d",			"delete",
-						  "M-f",			"back_space");
+						              "A-v",			"C-y",
+						              "A-c",			"M-w",
+						              "C-m",			"return",
+						              "M-L",			"C-e",
+						              "M-J",			"C-a",
+						              "C-J",			"C-A-z",
+						              "C-L",			"C-A-x",
+                          "A-L",      "C-A-x",
+                          "A-J",      "C-A-z",
+						              "C-i",			"tab",
+						              "M-d",			"delete",
+                          "M-W",      "A-k",
+						              "M-f",			"back_space");
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");

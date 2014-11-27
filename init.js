@@ -62,7 +62,7 @@ url_remoting_fn = load_url_in_new_buffer;
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 // history expire
-user_pref("browser.history_expire_day", 99999);
+user_pref("browser.history_expire_day", 365);
 
 // spell checker
 session_pref("layout.spellcheckDefault", 1);
