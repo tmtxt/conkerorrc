@@ -71,7 +71,7 @@ interactive("tmtxt-open-google-plus-new", "Open Google+ New Buffer", "follow-new
             $browser_object = "https://plus.google.com/");
 define_key(content_buffer_normal_keymap, "C-7", "tmtxt-open-google-plus-new");
 interactive("tmtxt-open-aria2-webui", "Open aria2 webui", "follow-new-buffer",
-            $browser_object = "file:///Volumes/tmtxt/webui-aria2/index.html");
+            $browser_object = "file:///Volumes/tmtxt/Projects/webui-aria2/index.html");
 define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
 interactive("tmtxt-open-localhost-3000", "Open localhost:3000", "follow-new-buffer",
             $browser_object = "http://localhost:3000");
