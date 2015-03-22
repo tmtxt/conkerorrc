@@ -1,35 +1,26 @@
 // visit a bookmark
-define_webjump("bookmark",
-               function(term) {return term;},
-               $completer = history_completer($use_history = false,
-                                              $use_bookmarks = true,
-                                              $match_required = true),
-               $description = "Visit a conkeror bookmark");
+// define_webjump("bookmark",
+//                function(term) {return term;},
+//                $completer = history_completer($use_history = false,
+//                                               $use_bookmarks = true,
+//                                               $match_required = true),
+//                $description = "Visit a conkeror bookmark");
 
 // Default webjump
 read_url_handler_list = [read_url_make_default_webjump_handler("google")];
 
 // searching
-define_webjump("g", "http://www.google.com/search?q=%s", 
-			  $description = "Google Search");
-define_webjump("yt", "http://www.youtube.com/results?search_query=%s",
-			  $description = "Youtue Search");
-define_webjump("tt", "http://www.google.com/search?q=%s%20site:tinhte.vn",
-			  $description = "Google search for tinhte.vn");
-define_webjump("tpb", "http://thepiratebay.se/search/%s",
-               $description = "Pirate Bay torrent search");
-define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com",
-			  $description = "Google search for hdvietnam.com");
-define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com",
-			  $description = "Google Search for yeuamnhac.com");
-define_webjump("rut", "http://www.google.com/search?q=%s%20site:rutracker.org",
-			  $description = "Google search for rutracker.org");
+define_webjump("g", "http://www.google.com/search?q=%s");
+define_webjump("yt", "http://www.youtube.com/results?search_query=%s");
+define_webjump("tt", "http://www.google.com/search?q=%s%20site:tinhte.vn");
+define_webjump("tpb", "http://thepiratebay.se/search/%s");
+define_webjump("hdvn", "http://www.google.com/search?q=%s%20site:hdvietnam.com");
+define_webjump("yan", "http://www.google.com/search?q=%s%20site:yeuamnhac.com");
+define_webjump("rut", "http://www.google.com/search?q=%s%20site:rutracker.org");
 
 // computer programming
-define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s",
-			  $description = "Javascript documentation search (Mozilla)");
-define_webjump("php", "http://www.php.net/manual-lookup.php?pattern=%s&scope=quickref",
-               $description = "PHP Doc Search");
+define_webjump("js", "https://developer.mozilla.org/en-US/search?q=%s");
+define_webjump("php", "http://www.php.net/manual-lookup.php?pattern=%s&scope=quickref");
 
 // usually visit site
 define_webjump("dantri", "http://dantri.com.vn");

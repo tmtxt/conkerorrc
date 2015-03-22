@@ -32,7 +32,7 @@ require("tmtxt-buffer-switcher.js");
 require("tmtxt-buffer-interaction.js");
 require("tmtxt-modeline.js");
 require("tmtxt-readability.js");
-require("tmtxt-useragent.js");
+// require("tmtxt-useragent.js");
 require("tmtxt-minibuffer.js");
 require("tmtxt-download.js");
 require("tmtxt-sites.js");
