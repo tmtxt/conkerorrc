@@ -70,7 +70,7 @@ interactive("colors-toggle", "toggle between document and forced colors",
 
 ////////////////////////////////////////////////////////////////////////////////
 // Auto hide show tab bar
-var allow_hide_tab = true;
+var allow_hide_tab = false;
 var tmtxt_last_timer = null;
 
 // Hide tab bar immediately
@@ -107,12 +107,12 @@ function hide_tab_delay(){
   if(tmtxt_last_timer != null){
 	tmtxt_last_timer.cancel();
   }
-  
-  // Now it is time to create the timer...  
+
+  // Now it is time to create the timer...
   tmtxt_last_timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
-  
+
   // ... and to initialize it, we want to call event.notify() ...
-  // ... one time after exactly ten seconds. 
+  // ... one time after exactly ten seconds.
   tmtxt_last_timer.initWithCallback(event, 3000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
 }
 
@@ -131,7 +131,7 @@ interactive("hide-tab", "Hide tab bar", function(I){
 });
 
 // Now activate the feature
-allow_hide_tab = true;
+allow_hide_tab = false;
 show_tab();
 hide_tab_delay();
 
