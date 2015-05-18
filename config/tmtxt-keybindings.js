@@ -6,7 +6,7 @@ function tmtxt_define_keys(){
   // check if arguments if larger than 1
   if(arguments.length > 1){
 	  var args = Array.prototype.slice.call(arguments);
-	  
+
 	  // get the keymap
 	  var keymap = args[0];
 
@@ -35,7 +35,7 @@ function tmtxt_define_keys(){
 // define key aliases for each pair in the input arguments
 function tmtxt_define_keys_aliases(){
   var args = Array.prototype.slice.call(arguments);
-  
+
   // check if the number of arguments is even
   var length;
   if(args.length % 2 == 0){
@@ -107,7 +107,7 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   "C-A-v",    "paste-url-new-buffer",
                   "C-D",    "caret-mode",
 
-                  
+
                   // ergoemacs style
                   "M-l",    "cmd_scrollRight",
                   "M-j",    "cmd_scrollLeft",
@@ -129,7 +129,7 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   // mac os specific
                   "A-up",   "tmtxt-scroll-top",
                   "A-down",   "tmtxt-scroll-bottom",
-                  
+
 
                   // exchange point and mark like emacs
                   "C-x C-x",  "tmtxt-back-to-last-position"
