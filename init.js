@@ -4,12 +4,13 @@ function tmtxt_os() {
       .getService(Components.interfaces.nsIXULRuntime).OS;
   return os;
 }
+// execute when in linux
 function tmtxt_in_linux(exec) {
   if(tmtxt_os() == 'Linux') {
     exec();
   }
 }
-
+// execute when in mac
 function tmtxt_in_mac(exec) {
   if(tmtxt_os() == 'Darwin') {
     exec();
@@ -17,12 +18,14 @@ function tmtxt_in_mac(exec) {
 }
 
 // OSX mapping: Command => A | Option => M
-modifiers.M = new modifier(function (event) { return event.altKey; },
-                           function (event) { event.altKey = true; });
-modifiers.A = new modifier(function (event) { return event.metaKey; },
-                           function (event) { event.metaKey = true; });
+tmtxt_in_mac(function(){
+  modifiers.M = new modifier(function (event) { return event.altKey; },
+                             function (event) { event.altKey = true; });
+  modifiers.A = new modifier(function (event) { return event.metaKey; },
+                             function (event) { event.metaKey = true; });
 
-define_key(default_global_keymap, "A-`", null, $fallthrough);
+  define_key(default_global_keymap, "A-`", null, $fallthrough);
+});
 
 // add directory dir inside .conkerorrc to load_paths
 function tmtxt_add_path(dir) {
