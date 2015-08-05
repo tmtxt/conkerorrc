@@ -1,3 +1,21 @@
+// Detect OS
+function tmtxt_os() {
+  var os = Components.classes["@mozilla.org/xre/app-info;1"]
+      .getService(Components.interfaces.nsIXULRuntime).OS;
+  return os;
+}
+function tmtxt_in_linux(exec) {
+  if(tmtxt_os() == 'Linux') {
+    exec();
+  }
+}
+
+function tmtxt_in_mac(exec) {
+  if(tmtxt_os() == 'Darwin') {
+    exec();
+  }
+}
+
 // OSX mapping: Command => A | Option => M
 modifiers.M = new modifier(function (event) { return event.altKey; },
                            function (event) { event.altKey = true; });
