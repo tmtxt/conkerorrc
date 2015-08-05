@@ -108,17 +108,16 @@ tmtxt_in_mac(function(){
 tmtxt_in_linux(function(){
   tmtxt_define_keys(default_global_keymap,
 				            "s-k",    "tmtxt-close-and-save-current-buffer",
+                    "s-h",		"stop-loading-all-buffers",
+                    "s-n",		"colors-toggle",
                     "M-W",    "tmtxt-close-and-save-current-buffer"
 				           );
 });
 
 tmtxt_define_keys(content_buffer_normal_keymap,
-                  "A-f",    "follow-new-buffer-background",
                   "F",      "follow-new-buffer-background",
                   "* q",    "browser-object-tinyurl",
-                  "C-A-v",    "paste-url-new-buffer",
                   "C-D",    "caret-mode",
-
 
                   // ergoemacs style
                   "M-l",    "cmd_scrollRight",
@@ -138,15 +137,25 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   "L",      "back",
                   "H",      "forward",
 
-                  // mac os specific
-                  "A-up",   "tmtxt-scroll-top",
-                  "A-down",   "tmtxt-scroll-bottom",
-
-
                   // exchange point and mark like emacs
                   "C-x C-x",  "tmtxt-back-to-last-position",
                   "'", "save"
                  );
+tmtxt_in_mac(function(){
+  tmtxt_define_keys(content_buffer_normal_keymap,
+                    "A-f",    "follow-new-buffer-background",
+                    "C-A-v",    "paste-url-new-buffer",
+
+                    // mac os specific
+                    "A-up",   "tmtxt-scroll-top",
+                    "A-down",   "tmtxt-scroll-bottom"
+                   );
+});
+tmtxt_in_linux(function(){
+  tmtxt_define_keys(content_buffer_normal_keymap,
+                    "C-s-v",    "paste-url-new-buffer"
+                   );
+});
 
 tmtxt_define_keys(text_keymap,
 				          "M-l",		"forward-char",
