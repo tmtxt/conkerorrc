@@ -6,7 +6,7 @@ function tmtxt_define_keys(){
   // check if arguments if larger than 1
   if(arguments.length > 1){
 	  var args = Array.prototype.slice.call(arguments);
-	  
+
 	  // get the keymap
 	  var keymap = args[0];
 
@@ -35,7 +35,7 @@ function tmtxt_define_keys(){
 // define key aliases for each pair in the input arguments
 function tmtxt_define_keys_aliases(){
   var args = Array.prototype.slice.call(arguments);
-  
+
   // check if the number of arguments is even
   var length;
   if(args.length % 2 == 0){
@@ -76,30 +76,42 @@ tmtxt_undefine_keys(default_global_keymap, "M-N");
 
 // redefine some keys
 tmtxt_define_keys(default_global_keymap,
-				          "A-z",		previous_buffer,
 				          "C-j",		previous_buffer,
-				          "A-x",		next_buffer,
 				          "C-l",		next_buffer,
-                  "A-l",    next_buffer,
-                  "A-j",    previous_buffer,
 				          "O",			"find-url-new-buffer",
 				          "C-x C-d",	"find-alternate-url",
-				          "A-q",		"quit",
 				          "C-tab",		"switch-to-recent-buffer",
 				          "C-S-tab",	"switch-to-last-buffer",
-				          "C-A-x",		switch_to_last_tab,
 				          "0",			switch_to_last_tab,
 				          "A-n",		"colors-toggle",
 				          "C-R",		"show-tab-temporarily",
-				          "w",			"tmtxt-close-and-save-current-buffer",
-				          "A-w",		"tmtxt-close-and-save-current-buffer",
-				          "A-k",		"tmtxt-close-and-save-current-buffer",
-				          "A-C",		"tmtxt-close-and-save-current-buffer",
-				          "A-W",		"tmtxt-open-closed-buffer",
-				          "A-T",		"tmtxt-open-closed-buffer",
-				          "A-h",		"stop-loading-all-buffers",
-				          "A-r",		"reload-all-buffers"
+				          "w",			"tmtxt-close-and-save-current-buffer"
 				         );
+tmtxt_in_mac(function(){
+  tmtxt_define_keys(default_global_keymap,
+				            "A-z",		previous_buffer,
+				            "A-x",		next_buffer,
+                    "A-l",    next_buffer,
+                    "A-j",    previous_buffer,
+				            "A-q",		"quit",
+				            "C-A-x",		switch_to_last_tab,
+				            "A-n",		"colors-toggle",
+				            "A-w",		"tmtxt-close-and-save-current-buffer",
+				            "A-k",		"tmtxt-close-and-save-current-buffer",
+				            "A-C",		"tmtxt-close-and-save-current-buffer",
+				            "A-W",		"tmtxt-open-closed-buffer",
+				            "A-T",		"tmtxt-open-closed-buffer",
+				            "A-h",		"stop-loading-all-buffers",
+				            "A-r",		"reload-all-buffers"
+				           );
+});
+tmtxt_in_linux(function(){
+  tmtxt_define_keys(default_global_keymap,
+				            "s-k",    "tmtxt-close-and-save-current-buffer",
+                    "M-W",    "tmtxt-close-and-save-current-buffer"
+				           );
+});
+
 tmtxt_define_keys(content_buffer_normal_keymap,
                   "A-f",    "follow-new-buffer-background",
                   "F",      "follow-new-buffer-background",
@@ -107,7 +119,7 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   "C-A-v",    "paste-url-new-buffer",
                   "C-D",    "caret-mode",
 
-                  
+
                   // ergoemacs style
                   "M-l",    "cmd_scrollRight",
                   "M-j",    "cmd_scrollLeft",
@@ -129,11 +141,12 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   // mac os specific
                   "A-up",   "tmtxt-scroll-top",
                   "A-down",   "tmtxt-scroll-bottom",
-                  
+
 
                   // exchange point and mark like emacs
                   "C-x C-x",  "tmtxt-back-to-last-position"
                  );
+
 tmtxt_define_keys(text_keymap,
 				          "M-l",		"forward-char",
 				          "M-j",		"backward-char",
@@ -168,19 +181,30 @@ tmtxt_define_keys(facebook_keymap,
 
 // and then some aliases
 tmtxt_define_keys_aliases("C-o",			"escape",
-						              "A-v",			"C-y",
-						              "A-c",			"M-w",
 						              "C-m",			"return",
 						              "M-L",			"C-e",
 						              "M-J",			"C-a",
 						              "C-J",			"C-A-z",
 						              "C-L",			"C-A-x",
-                          "A-L",      "C-A-x",
-                          "A-J",      "C-A-z",
 						              "C-i",			"tab",
 						              "M-d",			"delete",
-                          "M-W",      "A-k",
+
 						              "M-f",			"back_space");
+tmtxt_in_mac(function(){
+  tmtxt_define_keys_aliases("A-v",			"C-y",
+						                "A-c",			"M-w",
+                            "A-L",      "C-A-x",
+                            "M-W",      "A-k",
+                            "A-J",      "C-A-z"
+						                );
+});
+tmtxt_in_linux(function(){
+  tmtxt_define_keys_aliases("s-v",			"C-y",
+						                "s-c",			"M-w",
+                            "s-L",      "C-A-x",
+                            "s-J",      "C-A-z"
+						                );
+});
 
 // text selection
 define_key(content_buffer_normal_keymap, "S-M-right", "cmd_selectWordNext");
