@@ -80,7 +80,6 @@ tmtxt_define_keys(default_global_keymap,
 				          "C-l",		next_buffer,
 				          "O",			"find-url-new-buffer",
 				          "C-x C-d",	"find-alternate-url",
-				          "C-tab",		"switch-to-recent-buffer",
 				          "C-S-tab",	"switch-to-last-buffer",
 				          "0",			switch_to_last_tab,
 				          "A-n",		"colors-toggle",
@@ -89,6 +88,7 @@ tmtxt_define_keys(default_global_keymap,
 				         );
 tmtxt_in_mac(function(){
   tmtxt_define_keys(default_global_keymap,
+                    "C-tab",		"switch-to-recent-buffer",
 				            "A-z",		previous_buffer,
 				            "A-x",		next_buffer,
                     "A-l",    next_buffer,
@@ -110,7 +110,9 @@ tmtxt_in_linux(function(){
 				            "s-k",    "tmtxt-close-and-save-current-buffer",
                     "s-h",		"stop-loading-all-buffers",
                     "s-n",		"colors-toggle",
-                    "M-W",    "tmtxt-close-and-save-current-buffer"
+                    "C-L",    switch_to_last_tab,
+                    "M-W",    "tmtxt-close-and-save-current-buffer",
+                    "C-tab",  "switch-to-buffer"
 				           );
 });
 
@@ -120,10 +122,10 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   "C-D",    "caret-mode",
 
                   // ergoemacs style
-                  "M-l",    "cmd_scrollRight",
-                  "M-j",    "cmd_scrollLeft",
-                  "M-i",    "cmd_scrollLineUp",
-                  "M-k",    "cmd_scrollLineDown",
+                  // "M-l",    "cmd_scrollRight",
+                  // "M-j",    "cmd_scrollLeft",
+                  // "M-i",    "cmd_scrollLineUp",
+                  // "M-k",    "cmd_scrollLineDown",
                   "M-I",    "cmd_scrollPageUp",
                   "M-K",    "cmd_scrollPageDown",
                   "M-n",    "scroll-top-left",
@@ -160,13 +162,14 @@ tmtxt_in_linux(function(){
 tmtxt_define_keys(text_keymap,
 				          "M-l",		"forward-char",
 				          "M-j",		"backward-char",
-				          "M-u",		"forward-word",
-				          "M-o",		"backward-word",
-                  "S-delete", "cmd_deleteWordForward"
+				          "M-u",		"backward-word",
+				          "M-o",		"forward-word",
+                  "S-delete", "cmd_deleteWordForward",
+                  "M-F",    "cmd_deleteWordBackward"
 				         );
 tmtxt_define_keys(content_buffer_textarea_keymap,
-				          "M-i",		"backward-line",
-				          "M-k",		"forward-line",
+				          // "M-i",		"backward-line",
+				          // "M-k",		"forward-line",
 				          "A-up",		"beginning-of-first-line",
 				          "A-down",		"end-of-last-line",
                   "S-delete", "cmd_deleteWordForward"
@@ -194,8 +197,6 @@ tmtxt_define_keys_aliases("C-o",			"escape",
 						              "C-m",			"return",
 						              "M-L",			"C-e",
 						              "M-J",			"C-a",
-						              "C-J",			"C-A-z",
-						              "C-L",			"C-A-x",
 						              "C-i",			"tab",
 						              "M-d",			"delete",
 
@@ -205,14 +206,22 @@ tmtxt_in_mac(function(){
 						                "A-c",			"M-w",
                             "A-L",      "C-A-x",
                             "M-W",      "A-k",
-                            "A-J",      "C-A-z"
+                            "A-J",      "C-A-z",
+                            "C-J",			"C-A-z",
+						                "C-L",			"C-A-x"
 						                );
 });
 tmtxt_in_linux(function(){
   tmtxt_define_keys_aliases("s-v",			"C-y",
 						                "s-c",			"M-w",
                             "s-L",      "C-A-x",
-                            "s-J",      "C-A-z"
+                            "s-J",      "C-A-z",
+                            "M-m",      "return",
+                            "M-v",      "C-y",
+                            "M-k",      "down",
+                            "M-i",      "up",
+                            "M-j",      "left",
+                            "M-l",      "right"
 						                );
 });
 

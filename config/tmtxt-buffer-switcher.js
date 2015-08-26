@@ -81,7 +81,13 @@ function define_switch_buffer_key (key, buf_num) {
 for (let i = 0; i < 9; ++i) {
   define_switch_buffer_key(String((i+1)%10), i); // 1-9 for switching
 }
-define_switch_buffer_key("C-A-z", 0); // first buffer
+tmtxt_in_mac(function(){
+  define_switch_buffer_key("C-A-z", 0); // first buffer
+});
+tmtxt_in_linux(function(){
+  define_switch_buffer_key("C-s-z", 0); // first buffer
+  define_switch_buffer_key("C-J", 0); // first buffer
+});
 
 function switch_to_last_tab(I) {
   show_tab();
