@@ -144,7 +144,8 @@ tmtxt_define_keys(content_buffer_normal_keymap,
 
 
                   // exchange point and mark like emacs
-                  "C-x C-x",  "tmtxt-back-to-last-position"
+                  "C-x C-x",  "tmtxt-back-to-last-position",
+                  "'", "save"
                  );
 
 tmtxt_define_keys(text_keymap,
