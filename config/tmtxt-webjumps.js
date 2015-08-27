@@ -58,9 +58,9 @@ define_key(content_buffer_normal_keymap, "C-5", "tmtxt-open-linkedin-new");
 interactive("tmtxt-open-twitter-new", "Open Twitter New Buffer", "follow-new-buffer",
             $browser_object = "https://twitter.com/");
 define_key(content_buffer_normal_keymap, "C-6", "tmtxt-open-twitter-new");
-interactive("tmtxt-open-google-plus-new", "Open Google+ New Buffer", "follow-new-buffer",
-            $browser_object = "https://plus.google.com/");
-define_key(content_buffer_normal_keymap, "C-7", "tmtxt-open-google-plus-new");
+interactive("tmtxt-open-trello-personal", "Open Trello Personal New Buffer", "follow-new-buffer",
+            $browser_object = "https://trello.com/b/nJRXT2h2/personal-organization");
+define_key(content_buffer_normal_keymap, "C-7", "tmtxt-open-trello-personal");
 interactive("tmtxt-open-aria2-webui", "Open aria2 webui", "follow-new-buffer",
             $browser_object = "file:///Volumes/tmtxt/Projects/webui-aria2/index.html");
 define_key(content_buffer_normal_keymap, "C-Q", "tmtxt-open-aria2-webui");
@@ -68,7 +68,7 @@ interactive("tmtxt-open-localhost-3000", "Open localhost:3000", "follow-new-buff
             $browser_object = "http://localhost:3000");
 define_key(content_buffer_normal_keymap, "C-9", "tmtxt-open-localhost-3000");
 interactive("tmtxt-open-cias", "Open Cogini Cias", "follow-new-buffer",
-            $browser_object = "http://cias.cogini.com/home/index");
+            $browser_object = "http://admin.cogini.com/home/index");
 define_key(content_buffer_normal_keymap, "C-0", "tmtxt-open-cias");
 
 provide("tmtxt-webjumps");
