@@ -1,24 +1,25 @@
+var tmtxt = tmtxt || {};
+
 // Detect OS
-function tmtxt_os() {
+tmtxt.os = {};
+tmtxt.os.name = (function() {
   var os = Components.classes["@mozilla.org/xre/app-info;1"]
       .getService(Components.interfaces.nsIXULRuntime).OS;
   return os;
-}
-// execute when in linux
-function tmtxt_in_linux(exec) {
-  if(tmtxt_os() == 'Linux') {
+})();
+tmtxt.os.inLinux = function(exec) {
+  if(this.name === 'Linux') {
     exec();
   }
-}
-// execute when in mac
-function tmtxt_in_mac(exec) {
-  if(tmtxt_os() == 'Darwin') {
+};
+tmtxt.os.inMac = function(exec) {
+  if(this.name === 'Darwin') {
     exec();
   }
-}
+};
 
 // OSX mapping: Command => A | Option => M
-tmtxt_in_mac(function(){
+tmtxt.os.inMac(function(){
   modifiers.M = new modifier(function (event) { return event.altKey; },
                              function (event) { event.altKey = true; });
   modifiers.A = new modifier(function (event) { return event.metaKey; },
@@ -27,13 +28,20 @@ tmtxt_in_mac(function(){
   define_key(default_global_keymap, "A-`", null, $fallthrough);
 });
 
+tmtxt.addPath = function(dir) {
+  let (path = get_home_directory()) {
+    path.appendRelativePath(".conkerorrc");
+    path.appendRelativePath(dir);
+    load_paths.unshift(make_uri(path).spec);
+  };
+};
 // add directory dir inside .conkerorrc to load_paths
 function tmtxt_add_path(dir) {
-    let (path = get_home_directory()) {
-        path.appendRelativePath(".conkerorrc");
-        path.appendRelativePath(dir);
-        load_paths.unshift(make_uri(path).spec);
-    };
+  let (path = get_home_directory()) {
+    path.appendRelativePath(".conkerorrc");
+    path.appendRelativePath(dir);
+    load_paths.unshift(make_uri(path).spec);
+  };
 }
 
 // Some useful modules

@@ -1,4 +1,5 @@
 // NOTE: This file should be loaded finally, after all other files
+var tmtxt = tmtxt || {};
 
 // define keys for specific keymap
 // arguments: keymap, keystroke1, command1, keystroke2, command2,...
@@ -86,7 +87,7 @@ tmtxt_define_keys(default_global_keymap,
 				          "C-R",		"show-tab-temporarily",
 				          "w",			"tmtxt-close-and-save-current-buffer"
 				         );
-tmtxt_in_mac(function(){
+tmtxt.os.inMac(function(){
   tmtxt_define_keys(default_global_keymap,
                     "C-tab",		"switch-to-recent-buffer",
 				            "A-z",		previous_buffer,
@@ -105,7 +106,7 @@ tmtxt_in_mac(function(){
 				            "A-r",		"reload-all-buffers"
 				           );
 });
-tmtxt_in_linux(function(){
+tmtxt.os.inLinux(function(){
   tmtxt_define_keys(default_global_keymap,
 				            "s-k",    "tmtxt-close-and-save-current-buffer",
                     "s-h",		"stop-loading-all-buffers",
@@ -143,7 +144,7 @@ tmtxt_define_keys(content_buffer_normal_keymap,
                   "C-x C-x",  "tmtxt-back-to-last-position",
                   "'", "save"
                  );
-tmtxt_in_mac(function(){
+tmtxt.os.inMac(function(){
   tmtxt_define_keys(content_buffer_normal_keymap,
                     "A-f",    "follow-new-buffer-background",
                     "C-A-v",    "paste-url-new-buffer",
@@ -153,7 +154,7 @@ tmtxt_in_mac(function(){
                     "A-down",   "tmtxt-scroll-bottom"
                    );
 });
-tmtxt_in_linux(function(){
+tmtxt.os.inLinux(function(){
   tmtxt_define_keys(content_buffer_normal_keymap,
                     "C-s-v",    "paste-url-new-buffer"
                    );
@@ -201,7 +202,7 @@ tmtxt_define_keys_aliases("C-o",			"escape",
 						              "M-d",			"delete",
 
 						              "M-f",			"back_space");
-tmtxt_in_mac(function(){
+tmtxt.os.inMac(function(){
   tmtxt_define_keys_aliases("A-v",			"C-y",
 						                "A-c",			"M-w",
                             "A-L",      "C-A-x",
@@ -211,7 +212,7 @@ tmtxt_in_mac(function(){
 						                "C-L",			"C-A-x"
 						                );
 });
-tmtxt_in_linux(function(){
+tmtxt.os.inLinux(function(){
   tmtxt_define_keys_aliases("s-v",			"C-y",
 						                "s-c",			"M-w",
                             "s-L",      "C-A-x",
