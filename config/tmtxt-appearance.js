@@ -106,7 +106,7 @@ interactive("hide-tab", "Hide tab bar", function(I){
   tmtxt.display.hideTab();
 });
 
-tmtxt.allowHideTab = false;
+tmtxt.display.allowHideTab = false;
 tmtxt.display.showTab();
 tmtxt.display.hideTabDelay();
 

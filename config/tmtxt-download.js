@@ -1,15 +1,17 @@
+var tmtxt = tmtxt || {};
+
 ////////////////////////////////////////////////////////////////////////////////
 // Download in background
 download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 // Set default download location to ~/Downloads
-cwd=get_home_directory(); 
+cwd=get_home_directory();
 cwd.append("Downloads");
 
 ////////////////////////////////////////////////////////////////////////////////
 // Integrating with aria2
 // My handler function
-function content_handler_add_to_aria2(ctx) {
+tmtxt.contentHandlerAddToAria2 = function(ctx) {
   var source = ctx.launcher.source.spec;
 
   // for aria2
@@ -36,14 +38,14 @@ function content_handler_add_to_aria2(ctx) {
 
   // abort the context since aria2 handles it already
   source.abort();
-}
+};
 
 // this function is taken from content-handler.js in conkeror source code.
 // Sadly, I haven't found any better solution than rewriting this function
 function content_handler_prompt (ctx) {
   var action_chosen = false;
   var can_view_internally = ctx.frame != null &&
-    can_override_mime_type_for_uri(ctx.launcher.source);
+      can_override_mime_type_for_uri(ctx.launcher.source);
   var panel;
   try {
     panel = create_info_panel(ctx.window, "download-panel",
@@ -80,7 +82,7 @@ function content_handler_prompt (ctx) {
       action_chosen = true;
       break;
     case "a":
-      yield content_handler_add_to_aria2(ctx);
+      yield tmtxt.contentHandlerAddToAria2(ctx);
       action_chosen = true;
       break;
     }
@@ -93,17 +95,5 @@ function content_handler_prompt (ctx) {
       panel.destroy();
   }
 }
-
-interactive("youtube-download", "Download from youtube",
-            function(I){
-              // get the url of the page
-              var url = I.buffer.current_uri.spec;
-              const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
-                .getService(Components.interfaces.nsIClipboardHelper);
-              // put it to clipboard
-              gClipboardHelper.copyString(url);
-              // run the script
-              shell_command_blind("open /Volumes/tmtxt/bin/youtube-download.sh");
-            });
 
 provide("tmtxt-download");
