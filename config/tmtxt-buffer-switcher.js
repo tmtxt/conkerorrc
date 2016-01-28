@@ -60,12 +60,12 @@ interactive("switch-to-recent-buffer",
 ////Switch to last buffer
 interactive("switch-to-last-buffer", "Switch to the last visited buffer",
             function (I) {
-			        show_tab();
+              tmtxt.display.showTab();
               switch_to_buffer(I.window,
                                // This is the way to go in newer
                                // conkeror versions
                                I.window.buffers.buffer_history[1]);
-			        hide_tab_delay();
+			        tmtxt.display.hideTabDelay();
             });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -74,10 +74,10 @@ function define_switch_buffer_key (key, buf_num) {
 
   define_key(default_global_keymap, key,
              function (I) {
-			         show_tab();
+			         tmtxt.display.showTab();
                switch_to_buffer(I.window,
                                 I.window.buffers.get_buffer(buf_num));
-			         hide_tab_delay();
+			         tmtxt.display.hideTabDelay();
              });
 }
 for (let i = 0; i < 9; ++i) {
@@ -92,24 +92,24 @@ tmtxt.os.inLinux(function(){
 });
 
 function switch_to_last_tab(I) {
-  show_tab();
+  tmtxt.display.showTab();
   switch_to_buffer(I.window,
                    I.window.buffers.get_buffer(I.window.buffers.count - 1));
-  hide_tab_delay();
+  tmtxt.display.hideTabDelay();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Changing buffer, show tab and then hide
 function next_buffer(I){
-  show_tab();
+  tmtxt.display.showTab();
   buffer_next(I.window, I.p);
-  hide_tab_delay();
+  tmtxt.display.hideTabDelay();
 }
 
 function previous_buffer(I){
-  show_tab();
+  tmtxt.display.showTab();
   buffer_next(I.window, -I.p);
-  hide_tab_delay();
+  tmtxt.display.hideTabDelay();
 }
 
 provide("tmtxt-buffer-switcher");

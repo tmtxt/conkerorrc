@@ -1,3 +1,5 @@
+var tmtxt = tmtxt || {};
+
 // setting for interacting with buffers
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -11,27 +13,27 @@ var tmtxt_closed_buffers = new Array();
 interactive("tmtxt-close-and-save-current-buffer",
 			"close and save the current buffer for later restore",
 			function(I) {
-			  show_tab();
+        tmtxt.display.showTab();
 			  if(tmtxt_closed_buffers.length==10) {
 				tmtxt_closed_buffers.shift(); // remove older item to save
 				// memory, just save maximum 10 buffers
 			  }
 			  tmtxt_closed_buffers.push(I.buffer.document.URL); //add one item
 			  kill_buffer(I.buffer); //kill the current buffer
-			  hide_tab_delay();
+			  tmtxt.display.hideTabDelay();
 			});
 //reopen the last closed buffer and remove it from the array
 interactive("tmtxt-open-closed-buffer",
 			"open the last closed buffer",
 			function(I){
-			  show_tab();
+			  tmtxt.display.showTab();
 			  if(tmtxt_closed_buffers.length>0){
 				load_url_in_new_buffer(
 				  tmtxt_closed_buffers[tmtxt_closed_buffers.length - 1],
 				  I.window);
 				tmtxt_closed_buffers.pop();
 			  }
-			  hide_tab_delay();
+			  tmtxt.display.hideTabDelay();
 			});
 
 ////////////////////////////////////////////////////////////////////////////////
