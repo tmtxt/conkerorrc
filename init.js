@@ -28,6 +28,7 @@ tmtxt.os.inMac(function(){
   define_key(default_global_keymap, "A-`", null, $fallthrough);
 });
 
+// add directory dir inside .conkerorrc to load_paths
 tmtxt.addPath = function(dir) {
   let (path = get_home_directory()) {
     path.appendRelativePath(".conkerorrc");
@@ -35,14 +36,6 @@ tmtxt.addPath = function(dir) {
     load_paths.unshift(make_uri(path).spec);
   };
 };
-// add directory dir inside .conkerorrc to load_paths
-function tmtxt_add_path(dir) {
-  let (path = get_home_directory()) {
-    path.appendRelativePath(".conkerorrc");
-    path.appendRelativePath(dir);
-    load_paths.unshift(make_uri(path).spec);
-  };
-}
 
 // Some useful modules
 require("daemon.js");
@@ -53,7 +46,7 @@ require("clicks-in-new-buffer.js");
 require("page-modes/google-search-results.js");
 
 // my config files
-tmtxt_add_path("config");
+tmtxt.addPath("config");
 require("tmtxt-development.js");
 require("tmtxt-appearance.js");
 require("tmtxt-webjumps.js");
