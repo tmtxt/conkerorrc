@@ -7,7 +7,8 @@ add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
 add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
 
 // conkeror mac modeline buttons
-let (path = get_home_directory()) {
+(function(){
+  let path = get_home_directory();
   // add to load path
   path.appendRelativePath(".conkerorrc");
   path.appendRelativePath("modules");
@@ -15,8 +16,8 @@ let (path = get_home_directory()) {
   load_paths.unshift(make_uri(path).spec);
 
   // include the library
-  require("conkeror-mac-modeline-buttons.js");  
-};
+  require("conkeror-mac-modeline-buttons.js");
+}());
 
 // set the image path for cmmb
 cmmb_image_path = get_home_directory();
