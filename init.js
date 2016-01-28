@@ -30,11 +30,10 @@ tmtxt.os.inMac(function(){
 
 // add directory dir inside .conkerorrc to load_paths
 tmtxt.addPath = function(dir) {
-  let (path = get_home_directory()) {
-    path.appendRelativePath(".conkerorrc");
-    path.appendRelativePath(dir);
-    load_paths.unshift(make_uri(path).spec);
-  };
+  var path = get_home_directory();
+  path.appendRelativePath(".conkerorrc");
+  path.appendRelativePath(dir);
+  load_paths.unshift(make_uri(path).spec);
 };
 
 // Some useful modules

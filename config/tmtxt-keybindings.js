@@ -77,12 +77,12 @@ tmtxt_undefine_keys(default_global_keymap, "M-N");
 
 // redefine some keys
 tmtxt_define_keys(default_global_keymap,
-				          "C-j",		previous_buffer,
-				          "C-l",		next_buffer,
+				          "C-j",		"previous-buffer",
+				          "C-l",		"next-buffer",
 				          "O",			"find-url-new-buffer",
 				          "C-x C-d",	"find-alternate-url",
 				          "C-S-tab",	"switch-to-last-buffer",
-				          "0",			switch_to_last_tab,
+				          "0",			"switch-to-last-tab",
 				          "A-n",		"colors-toggle",
 				          "C-R",		"show-tab-temporarily",
 				          "w",			"tmtxt-close-and-save-current-buffer"
@@ -90,12 +90,12 @@ tmtxt_define_keys(default_global_keymap,
 tmtxt.os.inMac(function(){
   tmtxt_define_keys(default_global_keymap,
                     "C-tab",		"switch-to-recent-buffer",
-				            "A-z",		previous_buffer,
-				            "A-x",		next_buffer,
-                    "A-l",    next_buffer,
-                    "A-j",    previous_buffer,
+				            "A-z",		"previous-buffer",
+				            "A-x",		"next-buffer",
+                    "A-l",    "next-buffer",
+                    "A-j",    "previous-buffer",
 				            "A-q",		"quit",
-				            "C-A-x",		switch_to_last_tab,
+				            "C-A-x",		"switch-to-last-tab",
 				            "A-n",		"colors-toggle",
 				            "A-w",		"tmtxt-close-and-save-current-buffer",
 				            "A-k",		"tmtxt-close-and-save-current-buffer",
@@ -210,7 +210,7 @@ tmtxt.os.inMac(function(){
                             "A-J",      "C-A-z",
                             "C-J",			"C-A-z",
 						                "C-L",			"C-A-x"
-						                );
+						               );
 });
 tmtxt.os.inLinux(function(){
   tmtxt_define_keys_aliases("s-v",			"C-y",
@@ -223,7 +223,7 @@ tmtxt.os.inLinux(function(){
                             "M-i",      "up",
                             "M-j",      "left",
                             "M-l",      "right"
-						                );
+						               );
 });
 
 // text selection

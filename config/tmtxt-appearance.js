@@ -54,21 +54,19 @@ tmtxt.display.tabLastTimer = null;
 // Hide tab bar immediately
 tmtxt.display.hideTab = function() {
   if (tmtxt.display.allowHideTab) {
-    let (sheet = get_home_directory()) {
-      sheet.append(".conkerorrc");
-      sheet.append("no-tab.css");
-      register_user_stylesheet(make_uri(sheet));
-    };
+    let sheet = get_home_directory();
+    sheet.append(".conkerorrc");
+    sheet.append("no-tab.css");
+    register_user_stylesheet(make_uri(sheet));
   }
 };
 
 // Show tab bar
 tmtxt.display.showTab = function() {
-  let (sheet = get_home_directory()) {
-	  sheet.append(".conkerorrc");
-	  sheet.append("no-tab.css");
-	  unregister_user_stylesheet(make_uri(sheet));
-  };
+  let sheet = get_home_directory();
+	sheet.append(".conkerorrc");
+	sheet.append("no-tab.css");
+	unregister_user_stylesheet(make_uri(sheet));
 };
 
 // Hide tab bar with delay

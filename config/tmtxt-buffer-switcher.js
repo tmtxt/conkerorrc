@@ -1,5 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 var tmtxt = tmtxt || {};
+tmtxt.nav = tmtxt.nav || {};
 
 require("minibuffer");
 buffer_container.prototype.for_each_history = function(f) {
@@ -70,46 +71,47 @@ interactive("switch-to-last-buffer", "Switch to the last visited buffer",
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Use numeric key to switch buffers (1-9)
-function define_switch_buffer_key (key, buf_num) {
-
-  define_key(default_global_keymap, key,
+tmtxt.nav.defineSwitchBufferKey = function(key, bufNum) {
+  define_key(default_global_keymap,
+             key,
              function (I) {
 			         tmtxt.display.showTab();
                switch_to_buffer(I.window,
-                                I.window.buffers.get_buffer(buf_num));
+                                I.window.buffers.get_buffer(bufNum));
 			         tmtxt.display.hideTabDelay();
              });
-}
+};
 for (let i = 0; i < 9; ++i) {
-  define_switch_buffer_key(String((i+1)%10), i); // 1-9 for switching
+  tmtxt.nav.defineSwitchBufferKey(String((i+1)%10), i);
 }
 tmtxt.os.inMac(function(){
-  define_switch_buffer_key("C-A-z", 0); // first buffer
+  tmtxt.nav.defineSwitchBufferKey("C-A-z", 0); // first buffer
 });
 tmtxt.os.inLinux(function(){
-  define_switch_buffer_key("C-s-z", 0); // first buffer
-  define_switch_buffer_key("C-J", 0); // first buffer
+  tmtxt.nav.defineSwitchBufferKey("C-s-z", 0); // first buffer
+  tmtxt.nav.defineSwitchBufferKey("C-J", 0); // first buffer
 });
 
-function switch_to_last_tab(I) {
+// Switch to last tab
+interactive("switch-to-last-tab", "Switch to last tab", function(I){
   tmtxt.display.showTab();
   switch_to_buffer(I.window,
                    I.window.buffers.get_buffer(I.window.buffers.count - 1));
   tmtxt.display.hideTabDelay();
-}
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Changing buffer, show tab and then hide
-function next_buffer(I){
+interactive("next-buffer", "Switch to next buffer", function(I){
   tmtxt.display.showTab();
   buffer_next(I.window, I.p);
   tmtxt.display.hideTabDelay();
-}
+});
 
-function previous_buffer(I){
+interactive("previous-buffer", "Switch to previous buffer", function(I){
   tmtxt.display.showTab();
   buffer_next(I.window, -I.p);
   tmtxt.display.hideTabDelay();
-}
+});
 
 provide("tmtxt-buffer-switcher");
