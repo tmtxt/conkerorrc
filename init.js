@@ -76,8 +76,13 @@ require("tmtxt-session.js");
 require("tmtxt-navigation.js");
 require("tmtxt-keybindings.js");
 
-// caret-mode disable by default
-user_pref('accessibility.browsewithcaret', false);
+// some config
+user_pref('accessibility.browsewithcaret', false); // disable caret mode
+user_pref("browser.history_expire_day", 365);
+session_pref("layout.spellcheckDefault", 2);
+
+url_remoting_fn = load_url_in_new_buffer;
+clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
 
 /// clear cache function
 interactive("tmtxt-cache-clear-all", "clear all cache",
@@ -85,15 +90,3 @@ interactive("tmtxt-cache-clear-all", "clear all cache",
 			        cache_clear(CACHE_ALL);
             });
 define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
-
-/// open remote url in new tab not new frame
-url_remoting_fn = load_url_in_new_buffer;
-
-// Load clicked link in background
-clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
-
-// history expire
-user_pref("browser.history_expire_day", 365);
-
-// spell checker
-session_pref("layout.spellcheckDefault", 1);
