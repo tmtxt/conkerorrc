@@ -74,6 +74,7 @@ require("tmtxt-extensions.js");
 require("tmtxt-hinting.js");
 require("tmtxt-session.js");
 require("tmtxt-navigation.js");
+require("tmtxt-permission.js");
 require("tmtxt-keybindings.js");
 
 // some config
@@ -90,59 +91,3 @@ interactive("tmtxt-cache-clear-all", "clear all cache",
 			        cache_clear(CACHE_ALL);
             });
 define_key(default_global_keymap, "C-`", "tmtxt-cache-clear-all");
-
-tmtxt.permissionsList = [
-  {desc: "Audio Capture", value: "audio-capture"},
-  {desc: "Video Capture", value: "video-capture"},
-  {desc: "Geo Location", value: "geolocation"},
-  {desc: "Desktop Notification", value: "desktop-notification"}
-];
-tmtxt.readPermission = function(I) {
-  return I.minibuffer.read(
-    $prompt = "permission",
-    $completer = new all_word_completer(
-      $completions = tmtxt.permissionsList,
-      $get_string = function(x) {return x.value;},
-      $get_description = function(x) {return x.desc;}
-    )
-  );
-};
-tmtxt.addPermission = function(I) {
-  var permissionManager = tmtxt.xpcom.permissionManager;
-  var perm = yield tmtxt.readPermission(I);
-  var uri = make_uri(I.buffer.current_uri.prePath);
-  var allow = Components.interfaces.nsIPermissionManager.ALLOW_ACTION;
-
-  permissionManager.add(uri, perm, allow);
-};
-tmtxt.removePermission = function(I) {
-  var permissionManager = tmtxt.xpcom.permissionManager;
-  var perm = yield tmtxt.readPermission(I);
-  var uri = make_uri(I.buffer.current_uri.prePath);
-  var deny = Components.interfaces.nsIPermissionManager.DENY_ACTION;
-
-  permissionManager.add(uri, perm, deny);
-};
-
-interactive("b", "b", tmtxt.addPermission);
-interactive("c", "c", tmtxt.removePermission);
-
-interactive("a", "a", function(I){
-  var permsList = [
-    {desc: "Audio Capture", value: "audio-capture"},
-    {desc: "Video Capture", value: "video-capture"},
-    {desc: "Geo Location", value: "geolocation"},
-    {desc: "Desktop Notification", value: "desktop-notification"}
-  ];
-
-  var perm = yield I.minibuffer.read(
-    $prompt = "permission",
-    $completer = new all_word_completer(
-      $completions = permsList,
-      $get_string = function(x) {return x.value;},
-      $get_description = function(x) {return x.desc;}
-    )
-  );
-
-  I.minibuffer.message(I.buffer.current_uri.prePath);
-});

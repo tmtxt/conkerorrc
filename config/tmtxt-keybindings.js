@@ -86,7 +86,9 @@ tmtxt.key.defineKeys(default_global_keymap,
 				             "0",			"switch-to-last-tab",
 				             "A-n",		"colors-toggle",
 				             "C-R",		"show-tab-temporarily",
-				             "w",			"tmtxt-close-and-save-current-buffer"
+				             "w",			"tmtxt-close-and-save-current-buffer",
+                     "C-c C-a", "add-permission",
+                     "C-c C-q", "remove-permission"
 				            );
 tmtxt.os.inMac(function(){
   tmtxt.key.defineKeys(default_global_keymap,
