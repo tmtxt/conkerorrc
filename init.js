@@ -53,6 +53,7 @@ require("clicks-in-new-buffer.js");
 require("page-modes/google-search-results.js");
 tmtxt.addPath("modules");
 tmtxt.require("underscore.js");
+tmtxt.require("content-delay.js");
 
 // my config files
 tmtxt.addPath("config");
