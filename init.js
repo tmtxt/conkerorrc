@@ -36,6 +36,14 @@ tmtxt.addPath = function(dir) {
   load_paths.unshift(make_uri(path).spec);
 };
 
+// require external libraries that not use conkeror module system
+tmtxt.require = function(module) {
+  require(module);
+  if (!featurep(module)) {
+    provide(module);
+  }
+};
+
 // Some useful modules
 require("daemon.js");
 require("dom-inspector.js");
@@ -43,6 +51,8 @@ require("page-modes/gmail.js");
 require("global-overlay-keymap");
 require("clicks-in-new-buffer.js");
 require("page-modes/google-search-results.js");
+tmtxt.addPath("modules");
+tmtxt.require("underscore.js");
 
 // my config files
 tmtxt.addPath("config");
