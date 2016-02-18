@@ -31,4 +31,26 @@ interactive("facebook-share", "Share the current site on Facebook.", cefm.facebo
   );
 }());
 
+interactive("messenger-next-conversation",
+            "Next conversation",
+            function(I){
+              var document = I.buffer.document;
+              var conversationList = document.querySelector("ul[aria-label='Conversation List']");
+              var conversationItems = conversationList.querySelectorAll("li[role='row']");
+              var length = conversationItems.length;
+              var nextConversation;
+
+              for(var i = 0; i < conversationItems.length; i++) {
+                var currentConversation = conversationItems[i];
+                if (!!currentConversation.getAttribute('aria-relevant') && i !== (length -1)) {
+                  nextConversation = conversationItems[i + 1].querySelector('a');
+                  break;
+                }
+              }
+
+              if (!!nextConversation) {
+                dom_node_click(nextConversation);
+              }
+            });
+
 provide("tmtxt-facebook");
