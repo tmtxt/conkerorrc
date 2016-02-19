@@ -72,7 +72,6 @@ require("tmtxt-facebook.js");
 require("tmtxt-env.js");
 require("tmtxt-extensions.js");
 require("tmtxt-session.js");
-require("tmtxt-navigation.js");
 require("tmtxt-permission.js");
 require("tmtxt-keybindings.js");
 
