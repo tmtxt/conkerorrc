@@ -71,7 +71,6 @@ require("tmtxt-form.js");
 require("tmtxt-facebook.js");
 require("tmtxt-env.js");
 require("tmtxt-extensions.js");
-require("tmtxt-hinting.js");
 require("tmtxt-session.js");
 require("tmtxt-navigation.js");
 require("tmtxt-permission.js");
@@ -80,10 +79,23 @@ require("tmtxt-keybindings.js");
 // some config
 user_pref('accessibility.browsewithcaret', false); // disable caret mode
 user_pref("browser.history_expire_day", 365);
+// hardware acceleration
+user_pref('webgl.prefer-native-gl', true);
+user_pref('layers.offmainthreadcomposition.animate-opacity', true);
+user_pref('layers.offmainthreadcomposition.animate-transform', true);
+user_pref('layers.acceleration.force-enabled', true);
+user_pref('webgl.force-enabled', true);
+user_pref('webgl.msaa-force', true);
+user_pref('gfx.filter.nearest.force-enabled', true);
+user_pref('stagefright.force-enabled', true);
+// spell check
 session_pref("layout.spellcheckDefault", 2);
-
+// load url
 url_remoting_fn = load_url_in_new_buffer;
 clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
+// hinting
+hints_auto_exit_delay = 1;
+hints_ambiguous_auto_exit_delay = 500;
 
 /// clear cache function
 interactive("tmtxt-cache-clear-all", "clear all cache",
