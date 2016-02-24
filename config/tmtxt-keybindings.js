@@ -195,7 +195,7 @@ tmtxt.key.defineKeysAliases("C-o",			"escape",
 						                "C-m",			"return",
 						                "M-L",			"C-e",
 						                "M-J",			"C-a",
-						                "C-i",			"tab",
+						                // "C-i",			"tab",
 						                "M-d",			"delete",
 
 						                "M-f",			"back_space");
