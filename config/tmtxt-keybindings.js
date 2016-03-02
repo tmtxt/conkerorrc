@@ -126,10 +126,6 @@ tmtxt.key.defineKeys(content_buffer_normal_keymap,
                      "C-D",    "caret-mode",
 
                      // ergoemacs style
-                     // "M-l",    "cmd_scrollRight",
-                     // "M-j",    "cmd_scrollLeft",
-                     // "M-i",    "cmd_scrollLineUp",
-                     // "M-k",    "cmd_scrollLineDown",
                      "M-I",    "cmd_scrollPageUp",
                      "M-K",    "cmd_scrollPageDown",
                      "M-n",    "scroll-top-left",
@@ -143,8 +139,6 @@ tmtxt.key.defineKeys(content_buffer_normal_keymap,
                      "L",      "back",
                      "H",      "forward",
 
-                     // exchange point and mark like emacs
-                     "C-x C-x",  "tmtxt-back-to-last-position",
                      "'", "save"
                     );
 tmtxt.os.inMac(function(){
@@ -153,8 +147,8 @@ tmtxt.os.inMac(function(){
                        "C-A-v",    "paste-url-new-buffer",
 
                        // mac os specific
-                       "A-up",   "tmtxt-scroll-top",
-                       "A-down",   "tmtxt-scroll-bottom"
+                       "A-up",   "scroll-top-left",
+                       "A-down",   "cmd_scrollBottom"
                       );
 });
 tmtxt.os.inLinux(function(){
@@ -201,7 +195,7 @@ tmtxt.key.defineKeysAliases("C-o",			"escape",
 						                "C-m",			"return",
 						                "M-L",			"C-e",
 						                "M-J",			"C-a",
-						                "C-i",			"tab",
+						                // "C-i",			"tab",
 						                "M-d",			"delete",
 
 						                "M-f",			"back_space");
